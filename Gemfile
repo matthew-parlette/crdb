@@ -43,3 +43,6 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+# This should fix the warning messages when running 'rails server'
+gem 'webrick', '1.3.1'
