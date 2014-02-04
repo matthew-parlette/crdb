@@ -37,12 +37,39 @@ class CustomersController < ApplicationController
   end
   
   def edit
+    find_customer
   end
   
   def update
+    find_customer
+    
+    respond_to do |format|
+      if @customer.update(filtered_params)
+        flash[:notice] = 'Customer was successfully updated.'
+        format.html { render 'show' }
+      else
+        flash[:alert] = 'Customer could not be updated.'
+        format.html { render 'edit' }
+      end
+    end
   end
   
   def destroy
+    find_customer
+    
+    respond_to do |format|
+      if @customer.destroy
+        flash[:notice] = "Successfully deleted customer."
+        format.html { redirect_to(customers_path) }
+        format.js   {}
+        format.json { render json: @customer, status: :deleted }
+      else
+        flash[:alert] = "Customer could not be deleted."
+        format.html { render json: @customer.errors, status: :unprocessable_entity }
+        format.js   {}
+        format.json { render json: @customer.errors, status: :unprocessable_entity }
+      end
+    end
   end
   
   private
