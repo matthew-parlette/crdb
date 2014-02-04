@@ -30,7 +30,7 @@ class CustomersController < ApplicationController
         format.html { redirect_to @customer }
         format.json { render json: @customer, status: :created }
       else
-        format.html { render @customer.errors }
+        format.html { render 'new' }
         format.json { render json: @customer.errors, status: :unprocessable_entity }
       end
     end
