@@ -1,5 +1,5 @@
 class CustomersController < ApplicationController
-  before_filter :get_projects
+  before_filter :get_customers
   
   def index
   end
@@ -23,6 +23,6 @@ class CustomersController < ApplicationController
   end
   
   private
-    def get_projects
+    def get_customers
     end
 end
