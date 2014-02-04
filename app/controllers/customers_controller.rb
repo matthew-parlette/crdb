@@ -2,6 +2,7 @@ class CustomersController < ApplicationController
   before_filter :get_customers
   
   def index
+    @customers = Customer.all
     respond_to do |format|
       format.html {}
       format.json { render json: @customers }
