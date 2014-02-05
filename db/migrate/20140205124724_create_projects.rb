@@ -7,7 +7,7 @@ class CreateProjects < ActiveRecord::Migration
       t.date :due_date
       t.date :completed_date
       t.string :status
-      t.boolean :completed
+      t.boolean :completed, default: false
       t.references :customer, index: true
 
       t.timestamps
