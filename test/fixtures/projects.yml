@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  description: MyText
+  start_date: 2014-02-05
+  due_date: 2014-02-05
+  completed_date: 2014-02-05
+  status: MyString
+  completed: false
+  customer_id: 
+
+two:
+  title: MyString
+  description: MyText
+  start_date: 2014-02-05
+  due_date: 2014-02-05
+  completed_date: 2014-02-05
+  status: MyString
+  completed: false
+  customer_id: 
