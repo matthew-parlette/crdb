@@ -1,6 +1,4 @@
 class CustomersController < ApplicationController
-  before_filter :get_customers
-  
   def index
     @customers = Customer.all
     respond_to do |format|
@@ -73,9 +71,6 @@ class CustomersController < ApplicationController
   end
   
   private
-    def get_customers
-    end
-    
     def filtered_params
       params.require(:customer).permit(:title,:name,:description)
     end
