@@ -1,0 +1,15 @@
+<div>
+  <h1>Projects</h1>
+  <% @projects.each do |project| %>
+    <% if project.customer_id %>
+      <% customer = Customer.find(project.customer_id) %>
+    <% end %>
+    <p>
+      <%= link_to project.title, project %> <% if customer %>(<%= customer.title %>)<% end %>
+      <%= link_to 'edit', edit_project_path(project) %> 
+      <%= link_to 'del', project_path(project),
+                         method: :delete,
+                         data: { confirm: "Are you sure?" } %>
+    </p>
+  <% end %>
+</div>
