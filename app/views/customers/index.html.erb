@@ -6,5 +6,6 @@
     <%= link_to 'del', customer_path(customer),
                        method: :delete,
                        data: { confirm: "Are you sure?" } %>
+    <%= render partial: 'panel', locals: { customer: customer } %>
   <% end %>
 </div>
