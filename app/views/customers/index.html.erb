@@ -1,11 +1,6 @@
 <div>
   <h1>Customers</h1>
   <% @customers.each do |customer| %>
-    <%= link_to customer.title, customer %> 
-    <%= link_to 'edit', edit_customer_path(customer) %> 
-    <%= link_to 'del', customer_path(customer),
-                       method: :delete,
-                       data: { confirm: "Are you sure?" } %>
     <%= render partial: 'panel', locals: { customer: customer } %>
   <% end %>
 </div>
