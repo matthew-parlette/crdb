@@ -1,0 +1,40 @@
+<% projects = Project.where(:customer_id => customer.id) %>
+<div class="panel panel-info container">
+  <div class="panel-heading row">
+    <div class="col-md-10">
+      <h4><%= customer.title %></h4>
+    </div>
+    <div class="btn-group col-md-2">
+      <%= link_to_modal "Edit", edit_customer_path(customer),
+                                :class => "btn btn-default dropdown-toggle",
+                                :height => "auto" %>
+      <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li>
+          <%= link_to_modal "Edit", edit_customer_path(customer) %>
+        </li>
+        <li>
+        <%= link_to "Delete", customer_path(customer),
+              method: "delete", class: "",
+              data: { confirm: 'Are you sure?' } %>
+        </li>
+      </ul>
+    </div> <!-- btn-group -->
+  </div>
+  <div class="panel-body">
+    <p><%= customer.description %></p>
+  </div>
+  <ul class="list-group">
+    <strong><li class="list-group-item">Projects</li></strong>
+    <% if projects.any? %>
+      <% projects.each do |project| %>
+        <li class="list-group-item"><%= link_to project.title, project_path(project) %></li>
+      <% end %>
+    <% else %>
+      <li class="list-group-item">No projects, <%= link_to "add a project for this customer",
+                                                   new_customer_project_path(customer) %></li>
+    <% end %>
+  </div>
+</div>

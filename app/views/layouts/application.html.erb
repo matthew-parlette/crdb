@@ -34,6 +34,8 @@
                 <% @customers.each do |c| %>
                   <li><%= link_to c.title, customer_path(c) %></li>
                 <% end %>
+                <li class="divider"></li>
+                <li><%= link_to_modal "New Customer", new_customer_path, :remote => true %></li>
               </ul>
             </li>
             <!-- end customers dropdown -->
