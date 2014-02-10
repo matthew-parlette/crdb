@@ -30,7 +30,9 @@
     <strong><li class="list-group-item">Projects</li></strong>
     <% if projects.any? %>
       <% projects.each do |project| %>
-        <li class="list-group-item"><%= link_to project.title, project_path(project) %></li>
+        <li class="list-group-item">
+          <%= render partial: 'projects/panel_small', locals: { project: project } %>
+        </li>
       <% end %>
     <% else %>
       <li class="list-group-item">No projects, <%= link_to "add a project for this customer",
