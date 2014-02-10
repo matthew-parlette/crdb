@@ -1,7 +1,7 @@
 <div>
   <h1>Projects</h1>
   <% @projects.each do |project| %>
-    <div class="panel panel-default">
+    <div class="panel panel-default panel-heading">
       <%= render partial: 'panel_small', locals: { project: project } %>
     </div>
   <% end %>
