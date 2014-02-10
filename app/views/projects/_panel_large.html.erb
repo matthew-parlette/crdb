@@ -1,0 +1,18 @@
+<% if project.customer_id %>
+  <% customer = Customer.find(project.customer_id) %>
+<% end %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <%= render partial: 'panel_small', locals: { project: project } %>
+  </div>
+  <div class="panel-body">
+    <p><string>Title: </strong><%= project.title %></p>
+    <p><string>Description: </strong><%= project.description %></p>
+    <p><string>Customer: </strong><%= customer.title %></p>
+    <p><string>Status: </strong><%= project.status %></p>
+    <p><string>Completed? </strong><%= project.completed %></p>
+    <p><string>Start Date: </strong><%= project.start_date %></p>
+    <p><string>Due Date: </strong><%= project.due_date %></p>
+    <p><string>Completed Date: </strong><%= project.completed_date %></p>
+  </div>
+</div>
