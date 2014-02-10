@@ -3,10 +3,16 @@
 <% end %>
 <div class="container-fluid">
   <div class="row-fluid">
-    <div class="col-md-10">
+    <div class="col-md-1">
+      <div class="label label-default"><%= project.status %></div>
+    </div>
+    <div class="col-md-4">
       <h5>
-        <%= link_to project.title, project %> <% if customer %>(<%= customer.title %>)<% end %>
+        <%= link_to project.title, project %>
       </h5>
+    </div>
+    <div class="col-md-4">
+      <h5><% if customer %><%= link_to customer.title,customer_path(customer) %><% end %></h5>
     </div>
     <div class="btn-group col-md-2">
       <%= link_to_modal "Edit", edit_project_path(project),
