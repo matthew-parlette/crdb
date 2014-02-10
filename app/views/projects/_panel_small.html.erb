@@ -7,12 +7,17 @@
       <h5><div class="label label-default"><%= project.status %></div></h5>
     </div>
     <div class="col-md-4">
-      <h5>
+      <h4>
         <%= link_to project.title, project %>
-      </h5>
+        <small>
+          <% if customer %>
+            <%= customer.title %>
+          <% end %>
+        </small>
+      </h4>
     </div>
     <div class="col-md-4">
-      <h5><% if customer %><%= link_to customer.title,customer_path(customer) %><% end %></h5>
+      <h5></h5>
     </div>
     <div class="col-md-2">
       <div class="btn-group">
