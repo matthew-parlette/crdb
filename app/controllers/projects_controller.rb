@@ -17,6 +17,9 @@ class ProjectsController < ApplicationController
   
   def new
     @project = Project.new
+    if params.has_key?(:customer_id)
+      @project.customer_id = params[:customer_id]
+    end
   end
   
   def create
