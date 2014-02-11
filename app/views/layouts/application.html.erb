@@ -8,7 +8,7 @@
 </head>
 <body>
 
-  <% @customers = Customer.all %>
+  <% @customers = Customer.where(:active => true) %>
   <% @projects = Project.where(:completed => false)  %>
 
   <!-- Header navbar -->

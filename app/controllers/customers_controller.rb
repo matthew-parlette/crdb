@@ -72,7 +72,7 @@ class CustomersController < ApplicationController
   
   private
     def filtered_params
-      params.require(:customer).permit(:title,:name,:description)
+      params.require(:customer).permit(:title,:name,:description,:importance,:active)
     end
     
     def find_customer
