@@ -9,8 +9,9 @@
   <% for status in status_options %>
     <%= form_for @project, :html => { :class => "text-center" } do |f| %>
       <%= f.hidden_field(:status, :value => status) %>
-      <%= f.submit status, :class => "" %>
+      <%= f.submit status, :class => "btn btn-large" %>
     <% end %>
+    <br>
   <% end %>
   <!--<a href="" class="label label-default">completed</a>-->
 </div>
