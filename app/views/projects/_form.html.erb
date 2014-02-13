@@ -32,31 +32,39 @@
   <div class="field control-group">
     <%= f.label :status, :class => "control-label" %>
     <div class="controls">
-      <%= f.text_field :status %>
+      <%= select("project", "status", options_for_select([
+          ['new','new'],
+          ['in progress','in progress'],
+          ['waiting on customer','waiting on customer'],
+          ['on hold','on hold'],
+          ['cancelled','cancelled'],
+          ['delivered','delivered'],
+          ['completed','completed']
+          ],'new')) %>
     </div>
   </div>
   <div class="field control-group">
     <%= f.label :completed, :class => "control-label" %>
     <div class="controls">
-      <%= f.text_field :completed %>
+      <%= f.check_box :completed %>
     </div>
   </div>
   <div class="field control-group">
     <%= f.label :start_date, :class => "control-label" %>
     <div class="controls">
-      <%= f.text_field :start_date %>
+      <%= f.date_select :start_date %>
     </div>
   </div>
   <div class="field control-group">
     <%= f.label :due_date, :class => "control-label" %>
     <div class="controls">
-      <%= f.text_field :due_date %>
+      <%= f.date_select :due_date %>
     </div>
   </div>
   <div class="field control-group">
     <%= f.label :completed_date, :class => "control-label" %>
     <div class="controls">
-      <%= f.text_field :completed_date %>
+      <%= f.date_select :completed_date %>
     </div>
   </div>
   <div class="actions text-center">

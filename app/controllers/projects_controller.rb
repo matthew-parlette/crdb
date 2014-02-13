@@ -17,6 +17,9 @@ class ProjectsController < ApplicationController
   
   def new
     @project = Project.new
+    if params.has_key?(:customer_id)
+      @project.customer_id = params[:customer_id]
+    end
   end
   
   def create
@@ -68,6 +71,10 @@ class ProjectsController < ApplicationController
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
+  end
+  
+  def status
+    find_project
   end
   
   private

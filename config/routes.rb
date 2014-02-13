@@ -10,5 +10,7 @@ Crdb::Application.routes.draw do
   end
   
   resources :projects
+  
+  get '/projects/:id/status', to: 'projects#status', as: 'project_status'
 
 end
