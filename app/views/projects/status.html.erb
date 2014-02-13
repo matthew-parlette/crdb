@@ -1,0 +1,31 @@
+<div class="text-center">
+  <%= form_for @project, :html => { :class => "text-center" } do |f| %>
+    <%= f.hidden_field(:status, :value => "new") %>
+    <%= f.submit "new", :class => "" %>
+  <% end %>
+  <%= form_for @project, :html => { :class => "text-center" } do |f| %>
+    <%= f.hidden_field(:status, :value => "in progress") %>
+    <%= f.submit "in progress" %>
+  <% end %>
+  <%= form_for @project, :html => { :class => "text-center" } do |f| %>
+    <%= f.hidden_field(:status, :value => "waiting on customer") %>
+    <%= f.submit "waiting on customer" %>
+  <% end %>
+  <%= form_for @project, :html => { :class => "text-center" } do |f| %>
+    <%= f.hidden_field(:status, :value => "on hold") %>
+    <%= f.submit "on hold" %>
+  <% end %>
+  <%= form_for @project, :html => { :class => "text-center" } do |f| %>
+    <%= f.hidden_field(:status, :value => "cancelled") %>
+    <%= f.submit "cancelled" %>
+  <% end %>
+  <%= form_for @project, :html => { :class => "text-center" } do |f| %>
+    <%= f.hidden_field(:status, :value => "delivered") %>
+    <%= f.submit "delivered" %>
+  <% end %>
+  <%= form_for @project, :html => { :class => "text-center" } do |f| %>
+    <%= f.hidden_field(:status, :value => "completed") %>
+    <%= f.submit "completed" %>
+  <% end %>
+  <!--<a href="" class="label label-default">completed</a>-->
+</div>

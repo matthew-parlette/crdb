@@ -73,6 +73,10 @@ class ProjectsController < ApplicationController
     end
   end
   
+  def status
+    find_project
+  end
+  
   private
     def filtered_params
       params.require(:project).permit(:title,:description,:customer_id,:status,
