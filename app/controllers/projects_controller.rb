@@ -47,7 +47,11 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       if @project.update(filtered_params)
         flash[:notice] = 'Project was successfully updated.'
-        format.html { render 'show' }
+        if session.has_key?("back")
+          format.html { redirect_to session[:back] }
+        else
+          format.html { render 'show' }
+        end
       else
         flash[:alert] = 'Project could not be updated.'
         format.html { render 'edit' }
@@ -75,6 +79,7 @@ class ProjectsController < ApplicationController
   
   def status
     find_project
+    session[:back] = :back
   end
   
   private
