@@ -14,7 +14,12 @@
         </button>
         <ul class="dropdown-menu" role="menu">
           <% customer.links.split("\r\n").each do |link| %>
-            <li><%= link_to link, link %></li>
+            <% matches = link.match(/\[(.*)\]\((.*)\)/) %>
+            <% if matches %>
+              <li><%= link_to matches[1], matches[2] %></li>
+            <% else %>
+              <li><%= link_to link, link %></li>
+            <% end %>
           <% end %>
         </ul>
       </div> <!-- btn-group -->
