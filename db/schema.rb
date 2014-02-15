@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140214204455) do
+ActiveRecord::Schema.define(version: 20140215213744) do
 
   create_table "customers", force: true do |t|
     t.string   "title"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20140214204455) do
     t.datetime "updated_at"
     t.integer  "importance",  default: 0
     t.boolean  "active",      default: true
+    t.string   "links",       default: ""
   end
 
   create_table "projects", force: true do |t|
