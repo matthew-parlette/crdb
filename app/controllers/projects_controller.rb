@@ -84,7 +84,7 @@ class ProjectsController < ApplicationController
   
   private
     def filtered_params
-      params.require(:project).permit(:title,:description,:customer_id,:status,
+      params.require(:project).permit(:title,:description,:links,:customer_id,:status,
                                       :completed,:start_date,:due_date,
                                       :completed_date)
     end

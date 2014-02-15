@@ -1,11 +1,28 @@
 <% projects = Project.where(:customer_id => customer.id) %>
 <div class="panel panel-info container">
   <div class="panel-heading row">
-    <div class="col-md-8">
+    <div class="col-md-4">
       <h4><%= link_to customer.title, customer_path(customer) %></h4>
     </div>
     <div class="col-md-2">
       <h5><abbr title="Customer Importance" class="label label-default"><%= customer.importance %></abbr></h5>
+    </div>
+    <div class="col-md-2">
+      <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+          Links <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <% customer.links.split("\r\n").each do |link| %>
+            <% matches = link.match(/\[(.*)\]\((.*)\)/) %>
+            <% if matches %>
+              <li><%= link_to matches[1], matches[2], :target => "_blank" %></li>
+            <% else %>
+              <li><%= link_to link, link, :target => "_blank" %></li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div> <!-- btn-group -->
     </div>
     <div class="btn-group col-md-2">
       <%= link_to_modal "Edit", edit_customer_path(customer),
