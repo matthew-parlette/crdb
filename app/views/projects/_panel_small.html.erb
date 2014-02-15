@@ -26,9 +26,9 @@
           <% project.links.split("\r\n").each do |link| %>
             <% matches = link.match(/\[(.*)\]\((.*)\)/) %>
             <% if matches %>
-              <li><%= link_to matches[1], matches[2] %></li>
+              <li><%= link_to matches[1], matches[2], :target => "_blank" %></li>
             <% else %>
-              <li><%= link_to link, link %></li>
+              <li><%= link_to link, link, :target => "_blank" %></li>
             <% end %>
           <% end %>
         </ul>
