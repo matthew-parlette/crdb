@@ -38,15 +38,7 @@
   <div class="field control-group">
     <%= f.label :status, :class => "control-label" %>
     <div class="controls">
-      <%= select("project", "status", options_for_select([
-          ['new','new'],
-          ['in progress','in progress'],
-          ['waiting on customer','waiting on customer'],
-          ['on hold','on hold'],
-          ['cancelled','cancelled'],
-          ['delivered','delivered'],
-          ['completed','completed']
-          ],'new')) %>
+      <%= select("project", "status", options_for_select(status_options(),'new')) %>
     </div>
   </div>
   <div class="field control-group">
