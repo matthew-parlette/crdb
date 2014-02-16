@@ -1,12 +1,5 @@
 <div class="text-center">
-  <% status_options = ['new',
-                       'in progress',
-                       'waiting on customer',
-                       'on hold',
-                       'cancelled',
-                       'delivered',
-                       'complete'] %>
-  <% for status in status_options %>
+  <% for status in status_options() %>
     <%= form_for @project, :html => { :class => "text-center" } do |f| %>
       <%= f.hidden_field(:status, :value => status) %>
       <%= f.submit status, :class => "btn btn-large" %>
