@@ -38,7 +38,7 @@
   <div class="field control-group">
     <%= f.label :status, :class => "control-label" %>
     <div class="controls">
-      <%= select("project", "status", options_for_select(status_options(),'new')) %>
+      <%= select("project", "status", options_for_select(status_options(),@project.status)) %>
     </div>
   </div>
   <div class="field control-group">
