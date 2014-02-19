@@ -1,4 +1,4 @@
-<% projects = Project.where(:customer_id => customer.id) %>
+<% projects = ordered_projects(Project.where(:customer_id => customer.id)) %>
 <div class="panel panel-info container">
   <div class="panel-heading row">
     <div class="col-md-4">
@@ -48,11 +48,13 @@
   </div>
   <ul class="list-group">
     <strong><li class="list-group-item">Projects</li></strong>
-    <% if projects.any? %>
-      <% projects.each do |project| %>
-        <li class="list-group-item">
-          <%= render partial: 'projects/panel_small', locals: { project: project } %>
-        </li>
+    <% if projects[:active].any? %>
+      <% projects.keys.each do |category| %>
+        <% projects[category].each do |project| %>
+          <li class="list-group-item">
+            <%= render partial: 'projects/panel_small', locals: { project: project } %>
+          </li>
+        <% end %>
       <% end %>
     <% else %>
       <li class="list-group-item">No projects, <%= link_to "add a project for this customer",

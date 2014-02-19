@@ -1,3 +1,5 @@
+include ApplicationHelper
+
 class ProjectsController < ApplicationController
   def index
     if params.has_key?(:customer_id)
@@ -5,6 +7,7 @@ class ProjectsController < ApplicationController
     else
       @projects = Project.all
     end
+    @projects = ordered_projects(@projects)
     respond_to do |format|
       format.html {}
       format.json { render json: @projects }

@@ -1,8 +1,12 @@
 <div>
   <h1>Projects</h1>
-  <% @projects.each do |project| %>
-    <div class="panel panel-default panel-heading">
-      <%= render partial: 'panel_small', locals: { project: project } %>
-    </div>
+  <% @projects.keys.each do |category| %>
+    <h2><%= category %></h2>
+    <% @projects[category].each do |project| %>
+      <div class="panel panel-default panel-heading">
+        <%= render partial: 'panel_small', locals: { project: project } %>
+      </div>
+    <% end %>
+    <hr>
   <% end %>
 </div>
