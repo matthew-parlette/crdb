@@ -48,3 +48,5 @@ end
 
 # This should fix the warning messages when running 'rails server'
 gem 'webrick', '1.3.1'
+
+gem 'bootstrap-datepicker-rails'
