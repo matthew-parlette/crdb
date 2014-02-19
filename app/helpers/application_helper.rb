@@ -14,7 +14,7 @@ module ApplicationHelper
   #take a list of projects and organize them by:
   # active, inactive, closed
   def ordered_projects(project_list)
-     projects = {:active => nil, :inactive => nil, :closed => nil}
+     projects = {:active => [], :inactive => [], :closed => []}
      
      project_list.each do |project|
           if project.status.in?(['waiting on customer','on hold','delivered'])
