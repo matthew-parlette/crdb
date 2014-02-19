@@ -11,6 +11,15 @@
     </div>
   <% end %>
 
+  <script>
+  $(".datepicker").datepicker({
+      format: "yyyy-mm-dd",
+      todayBtn: "linked",
+      autoclose: true,
+      todayHighlight: true
+  });
+  </script>
+
   <div class="field control-group">
     <%= f.label :title, :class => "control-label" %>
     <div class="controls">
@@ -38,25 +47,25 @@
   <div class="field control-group">
     <%= f.label :status, :class => "control-label" %>
     <div class="controls">
-      <%= select("project", "status", options_for_select(status_options(),'new')) %>
+      <%= select("project", "status", options_for_select(status_options(),@project.status)) %>
     </div>
   </div>
   <div class="field control-group">
     <%= f.label :start_date, :class => "control-label" %>
     <div class="controls">
-      <%= f.date_select :start_date %>
+      <%= f.text_field :start_date, :class => "datepicker" %>
     </div>
   </div>
   <div class="field control-group">
     <%= f.label :due_date, :class => "control-label" %>
     <div class="controls">
-      <%= f.date_select :due_date %>
+      <%= f.text_field :due_date, :class => "datepicker" %>
     </div>
   </div>
   <div class="field control-group">
     <%= f.label :completed_date, :class => "control-label" %>
     <div class="controls">
-      <%= f.date_select :completed_date %>
+      <%= f.text_field :completed_date, :class => "datepicker" %>
     </div>
   </div>
   <div class="actions text-center">
