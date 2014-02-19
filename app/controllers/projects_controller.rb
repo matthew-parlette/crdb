@@ -1,6 +1,10 @@
 class ProjectsController < ApplicationController
   def index
-    @projects = Project.all
+    if params.has_key?(:customer_id)
+      @projects = Project.where(:customer_id => params[:customer_id])
+    else
+      @projects = Project.all
+    end
     respond_to do |format|
       format.html {}
       format.json { render json: @projects }
