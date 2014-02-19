@@ -3,21 +3,19 @@
 <% end %>
 <div class="container-fluid">
   <div class="row-fluid">
-    <div class="col-md-1">
-      <h5><%= link_to_modal project.status, project_status_path(project),
-                            :class => "label label-default" %></h5>
+    <div class="col-md-8">
+      <%= link_to_modal project.status, project_status_path(project),
+                            :class => "label label-default" %>
+    <h4>
+      <%= link_to project.title, project %>
+      <small>
+        <% if customer %>
+          <%= customer.title %>
+        <% end %>
+      </small>
+    </h4>
     </div>
-    <div class="col-md-4">
-      <h4>
-        <%= link_to project.title, project %>
-        <small>
-          <% if customer %>
-            <%= customer.title %>
-          <% end %>
-        </small>
-      </h4>
-    </div>
-    <div class="col-md-4">
+    <div class="col-md-2">
       <div class="btn-group">
         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
           Links <span class="caret"></span>
