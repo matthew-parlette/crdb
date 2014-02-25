@@ -1,0 +1,16 @@
+<div class="dropdown">
+  <button class="btn btn-small btn-<%=status_color(project.status)%> dropdown-toggle" type="button" id="project-<%= project.id%>-status" data-toggle="dropdown">
+    <%= project.status %>
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu project-status" role="menu" aria-labelledby="project-<%= project.id%>-status">
+    <% for status in status_options() %>
+      <li role="presentation">
+        <%= link_to status, "#", data: { url: project_url(project),
+                                         status: status
+                                       }, "role" => "menuitem" %>
+      </li>
+    <% end %>
+    <!--<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>-->
+  </ul>
+</div>

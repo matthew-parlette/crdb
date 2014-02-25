@@ -4,16 +4,17 @@
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="col-md-8">
-      <%= link_to_modal project.status, project_status_path(project),
-                            :class => "label label-#{status_color(project.status)}" %>
-    <h4>
-      <%= link_to project.title, project %>
-      <small>
-        <% if customer %>
-          <%= customer.title %>
-        <% end %>
-      </small>
-    </h4>
+      <!--<%= link_to_modal project.status, project_status_path(project),
+                            :class => "label label-#{status_color(project.status)}" %>-->
+      <%= render partial: 'status', locals: {project: project} %>
+      <h4>
+        <%= link_to project.title, project %>
+        <small>
+          <% if customer %>
+            <%= customer.title %>
+          <% end %>
+        </small>
+      </h4>
     </div>
     <div class="col-md-2">
       <div class="btn-group">

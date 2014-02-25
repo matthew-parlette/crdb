@@ -1,6 +1,8 @@
 include ApplicationHelper
 
 class ProjectsController < ApplicationController
+  before_filter :print_params
+
   def index
     if params.has_key?(:customer_id)
       @projects = Project.where(:customer_id => params[:customer_id])
@@ -55,6 +57,8 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       if @project.update(filtered_params)
         flash[:notice] = 'Project was successfully updated.'
+        format.json { render json: @project }
+        
         if session.has_key?("back")
           format.html { redirect_to session[:back] }
         else
@@ -63,6 +67,7 @@ class ProjectsController < ApplicationController
       else
         flash[:alert] = 'Project could not be updated.'
         format.html { render 'edit' }
+        format.json { render json: @project.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -91,6 +96,10 @@ class ProjectsController < ApplicationController
   end
   
   private
+    def print_params
+      print params
+    end
+    
     def filtered_params
       params.require(:project).permit(:title,:description,:links,:customer_id,:status,
                                       :completed,:start_date,:due_date,
