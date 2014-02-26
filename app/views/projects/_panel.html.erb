@@ -1,7 +1,7 @@
 <% if project.customer_id %>
   <% customer = Customer.find(project.customer_id) %>
 <% end %>
-<div class="panel panel-primary">
+<div class="panel panel-<%=status_color(project.status)%>">
   <div class="panel-heading">
     <div class="panel-title"><%= project.title %></div>
     <span class="pull-right clickable"><i class="glyphicon glyphicon-minus"></i></span>
