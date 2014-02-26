@@ -14,6 +14,9 @@
   <div class="panel-body">
     <div class="btn-toolbar" role="toolbar">
       <div class="btn-group">
+        <div class="btn btn-default"><%= render partial: 'projects/status', locals: {project: project} %></div>
+      </div>
+      <div class="btn-group">
         <%= link_to "edit", edit_project_path(project), class: "btn btn-default", :remote => true %>
         <%= link_to "delete", project_path(project), method: "delete", class: "btn btn-default", data: { confirm: 'Are you sure?' } %>
       </div>

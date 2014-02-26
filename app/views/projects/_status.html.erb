@@ -1,8 +1,8 @@
 <span class="dropdown">
-  <a class="text-muted dropdown-toggle" id="project-<%= project.id%>-status" data-toggle="dropdown">
+  <span class="dropdown-toggle" id="project-<%= project.id%>-status" data-toggle="dropdown">
     <%= project.status %>
     <b class="caret"></b>
-  </a>
+  </span>
   <ul class="dropdown-menu project-status" role="menu" aria-labelledby="project-<%= project.id%>-status">
     <% for status in status_options() %>
       <li role="presentation">
