@@ -35,8 +35,9 @@
     </div>
     <div class="col-md-2">
       <div class="btn-group">
-        <%= link_to_modal "Edit", edit_project_path(project),
-                                  :class => "btn btn-default" %>
+        <%= link_to "Edit", edit_project_path(project),
+                            :class => "btn btn-default",
+                            :remote => true %>
         <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
           <span class="caret"></span>
         </button>

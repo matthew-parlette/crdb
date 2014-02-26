@@ -27,22 +27,3 @@
        url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 
-/* fix modal: prevent bottom scroll bar from showing */
-.modal a.close-modal {
-  top: 10px;
-  right: 10px;
-}
-
-/*
-.modal .modal-body {
-  max-height: 420px;
-  overflow-y: none;
-}
-*/
-.modal {
-  /*top: 10%;
-  bottom: 10%;
-  overflow-y: none;*/
-  max-height: 80%;
-  height: auto;
-}

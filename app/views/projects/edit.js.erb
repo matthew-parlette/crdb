@@ -1,0 +1,13 @@
+$("#modal").dialog({
+  autoOpen: true,
+  height: 600,
+  width: 600,
+  modal: true,
+  title: 'Edit Project',
+  buttons: {
+    "Edit": function() { $("#modal form").submit() },
+  },
+  open: function() {
+    $("#modal").html("<%= escape_javascript(render('form')) %>")
+  },
+});
