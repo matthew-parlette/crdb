@@ -3,7 +3,10 @@
 <% end %>
 <div class="panel panel-<%=status_color(project.status)%>">
   <div class="panel-heading clickable">
-    <div class="panel-title"><%= project.title %></div>
+    <div class="panel-title"><%= project.title %> - 
+      <%= render partial: 'projects/status', locals: {project: project} %>
+    </div>
+    
     <span class="pull-right"><i class="glyphicon glyphicon-minus"></i></span>
   </div>
   <div class="panel-body">
