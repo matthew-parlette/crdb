@@ -1,0 +1,12 @@
+<% if project.customer_id %>
+  <% customer = Customer.find(project.customer_id) %>
+<% end %>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <div class="panel-title"><%= project.title %></div>
+    <span class="pull-right clickable"><i class="glyphicon glyphicon-minus"></i></span>
+  </div>
+  <div class="panel-body">
+    content here
+  </div>
+</div> <!-- panel -->
