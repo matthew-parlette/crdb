@@ -7,9 +7,16 @@
       <%= render partial: 'projects/status', locals: {project: project} %>
     </div>
     
-    <span class="pull-right"><i class="glyphicon glyphicon-minus"></i></span>
+    <span class="pull-right">
+      <i class="glyphicon glyphicon-minus"></i>
+    </span>
   </div>
   <div class="panel-body">
-    content here
-  </div>
+    <div class="btn-toolbar" role="toolbar">
+      <div class="btn-group">
+        <%= link_to "edit", edit_project_path(project), class: "btn btn-default", :remote => true %>
+        <%= link_to "delete", project_path(project), method: "delete", class: "btn btn-default", data: { confirm: 'Are you sure?' } %>
+      </div>
+    </div> <!-- toolbar -->
+  </div> <!-- panel-body -->
 </div> <!-- panel -->
