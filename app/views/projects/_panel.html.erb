@@ -2,9 +2,9 @@
   <% customer = Customer.find(project.customer_id) %>
 <% end %>
 <div class="panel panel-<%=status_color(project.status)%>">
-  <div class="panel-heading">
+  <div class="panel-heading clickable">
     <div class="panel-title"><%= project.title %></div>
-    <span class="pull-right clickable"><i class="glyphicon glyphicon-minus"></i></span>
+    <span class="pull-right"><i class="glyphicon glyphicon-minus"></i></span>
   </div>
   <div class="panel-body">
     content here
