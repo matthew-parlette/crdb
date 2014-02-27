@@ -28,15 +28,13 @@
         <p><strong>Completed Date: </strong><%= project.completed_date %></p>
       </div> <!-- overview pane -->
       <div class="well tab-pane" id="settings">
-        <div class="btn-toolbar" role="toolbar">
-          <div class="btn-group">
-            <div class="btn btn-default"><%= render partial: 'projects/status', locals: {project: project} %></div>
-          </div>
-          <div class="btn-group">
-            <%= link_to "edit", edit_project_path(project), class: "btn btn-default", :remote => true %>
-            <%= link_to "delete", project_path(project), method: "delete", class: "btn btn-default", data: { confirm: 'Are you sure?' } %>
-          </div>
-        </div> <!-- toolbar -->
+        <div class="btn-group">
+          <%= link_to "edit", edit_project_path(project), class: "btn btn-default", :remote => true %>
+          <%= link_to "delete", project_path(project), method: "delete", class: "btn btn-default", data: { confirm: 'Are you sure?' } %>
+        </div>
+        <table class="table">
+          <tr><td><strong>Status:</strong> <%= render partial: 'projects/status', locals: {project: project} %></td></tr>
+        </table>
       </div> <!-- settings pane -->
     </div> <!-- tab-content -->
   </div> <!-- panel-body -->
