@@ -1,7 +1,7 @@
 <% if project.customer_id %>
   <% customer = Customer.find(project.customer_id) %>
 <% end %>
-<div class="panel panel-<%=status_color(project.status)%>">
+<div class="panel panel-collapsed panel-<%=status_color(project.status)%>">
   <div class="panel-heading clickable">
     <div class="panel-title"><%= project.title %> - 
       <%= render partial: 'projects/status', locals: {project: project} %>

@@ -39,6 +39,9 @@ $(document).on "click", ".panel div.clickable", (e) ->
   return
 
 $(document).ready ->
-  #$(".panel-heading span.clickable").click()
-  #$(".panel div.clickable").click()
+  $(".panel div.clickable").click()
+  return
+
+$(document).on "page:load", ->
+  $(".panel div.clickable").click()
   return
