@@ -14,20 +14,20 @@
   <div class="panel-body">
     <!-- nav tabs -->
     <ul class="nav nav-tabs" id="project-tab">
-      <li class="active"><a href="#overview" data-toggle="tab">Overview</a></li>
-      <li><a href="#settings" data-toggle="tab">Settings</a></li>
+      <li class="active"><a href="#overview-<%=project.id%>" data-toggle="tab">Overview</a></li>
+      <li><a href="#settings-<%=project.id%>" data-toggle="tab">Settings</a></li>
     </ul> <!-- nav-tabs -->
     
     <!-- tab panes -->
     <div class="tab-content">
-      <div class="well tab-pane active" id="overview">
+      <div class="well tab-pane active" id="overview-<%=project.id%>">
         <p><strong>Description: </strong><%= project.description %></p>
         <p><strong>Customer: </strong><%= link_to customer.title, customers_path(customer) %></p>
         <p><strong>Start Date: </strong><%= project.start_date %></p>
         <p><strong>Due Date: </strong><%= project.due_date %></p>
         <p><strong>Completed Date: </strong><%= project.completed_date %></p>
       </div> <!-- overview pane -->
-      <div class="well tab-pane" id="settings">
+      <div class="well tab-pane" id="settings-<%=project.id%>">
         <div class="btn-group">
           <%= link_to "edit", edit_project_path(project), class: "btn btn-default", :remote => true %>
           <%= link_to "delete", project_path(project), method: "delete", class: "btn btn-default", data: { confirm: 'Are you sure?' } %>
