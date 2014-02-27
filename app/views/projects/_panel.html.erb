@@ -32,8 +32,11 @@
           <%= link_to "edit", edit_project_path(project), class: "btn btn-default", :remote => true %>
           <%= link_to "delete", project_path(project), method: "delete", class: "btn btn-default", data: { confirm: 'Are you sure?' } %>
         </div>
-        <table class="table">
-          <tr><td><strong>Status:</strong> <%= render partial: 'projects/status', locals: {project: project} %></td></tr>
+        <table class="table table-hover">
+          <tr>
+            <td class="col-md-1 table-bordered text-right"><strong>Status</strong></td>
+            <td class="span10"><%= render partial: 'projects/status', locals: {project: project} %></td>
+          </tr>
         </table>
       </div> <!-- settings pane -->
     </div> <!-- tab-content -->
