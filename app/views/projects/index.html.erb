@@ -3,9 +3,7 @@
   <% @projects.keys.each do |category| %>
     <h2><%= category %></h2>
     <% @projects[category].each do |project| %>
-      <div class="panel panel-default panel-heading">
-        <%= render partial: 'panel_small', locals: { project: project } %>
-      </div>
+      <%= render partial: 'panel', locals: { project: project } %>
     <% end %>
     <hr>
   <% end %>

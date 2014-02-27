@@ -1,0 +1,19 @@
+//from http://stackoverflow.com/questions/4065432/rails-ajax-a-modal-dialog
+var wHeight = $(window).height();
+var dHeight = wHeight * 0.85;
+
+$("#modal").dialog({
+  autoOpen: true,
+  height: dHeight,
+  minWidth: 400,
+  position: [ "center", 60 ],
+  modal: true,
+  title: 'Edit Project',
+  show: { effect: "" },
+  buttons: {
+    "Edit": function() { $("#modal form").submit() },
+  },
+  open: function() {
+    $("#modal").html("<%= escape_javascript(render('form')) %>")
+  },
+});

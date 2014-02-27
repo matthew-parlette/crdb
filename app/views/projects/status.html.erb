@@ -2,7 +2,7 @@
   <% for status in status_options() %>
     <%= form_for @project, :html => { :class => "text-center" } do |f| %>
       <%= f.hidden_field(:status, :value => status) %>
-      <%= f.submit status, :class => "btn btn-large" %>
+      <%= f.submit status, :class => "btn btn-large btn-#{status_color(status)}" %>
     <% end %>
     <br>
   <% end %>

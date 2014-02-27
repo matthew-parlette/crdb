@@ -11,6 +11,27 @@ module ApplicationHelper
     return options
   end
   
+  #returns a bootstrap contextual color based on the status
+  def status_color(status)
+     if status == "new"
+          return "danger"
+     elsif status == "in progress"
+          return "warning"
+     elsif status == "waiting on customer"
+          return "info"
+     elsif status == "on hold"
+          return "primary"
+     elsif status == "cancelled"
+          return "default"
+     elsif status == "delivered"
+          return "info"
+     elsif status == "complete"
+          return "success"
+     else
+          return "default"
+     end
+  end
+  
   #take a list of projects and organize them by:
   # active, inactive, closed
   def ordered_projects(project_list)

@@ -3,11 +3,10 @@
 <% end %>
 <div class="container-fluid">
   <div class="row-fluid">
-    <div class="col-md-1">
-      <h5><%= link_to_modal project.status, project_status_path(project),
-                            :class => "label label-default" %></h5>
-    </div>
-    <div class="col-md-4">
+    <div class="col-md-8">
+      <!--<%= link_to_modal project.status, project_status_path(project),
+                            :class => "label label-#{status_color(project.status)}" %>-->
+      <%= render partial: 'projects/status', locals: {project: project} %>
       <h4>
         <%= link_to project.title, project %>
         <small>
@@ -17,7 +16,7 @@
         </small>
       </h4>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-2">
       <div class="btn-group">
         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
           Links <span class="caret"></span>
@@ -36,14 +35,15 @@
     </div>
     <div class="col-md-2">
       <div class="btn-group">
-        <%= link_to_modal "Edit", edit_project_path(project),
-                                  :class => "btn btn-default" %>
+        <%= link_to "Edit", edit_project_path(project),
+                            :class => "btn btn-default",
+                            :remote => true %>
         <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
           <span class="caret"></span>
         </button>
         <ul class="dropdown-menu">
           <li>
-            <%= link_to_modal "Edit", edit_project_path(project) %>
+            <%= link_to "Edit", edit_project_path(project), :remote => true %>
           </li>
           <li>
           <%= link_to "Delete", project_path(project),
