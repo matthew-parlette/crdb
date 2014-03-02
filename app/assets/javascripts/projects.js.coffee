@@ -4,7 +4,8 @@
 
 # update status selection via ajax
 $(document).on "click", ".dropdown-menu li a", ->
-  #alert "url:" + $(this).attr("data-url") + ", status: " + $(this).text()
+  #abort if data-url is not defined
+  return if $(this).attr("data-url") == undefined
   $.ajax
     url: $(this).attr("data-url"),
     type: 'PATCH',
