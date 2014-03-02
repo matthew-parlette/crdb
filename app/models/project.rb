@@ -1,3 +1,5 @@
+include ApplicationHelper
+
 class Project < ActiveRecord::Base
   include ActiveModel::Dirty
   
@@ -7,6 +9,7 @@ class Project < ActiveRecord::Base
   
   validates :title, presence: true
   validates :status, presence: true
+  validates_inclusion_of :status, :in => status_options()
 
   private
     
