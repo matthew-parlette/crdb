@@ -18,5 +18,6 @@ eval "sed -i 's/v[0-9]\.[0-9]/$version/g' app/views/layouts/application.html.erb
 info "verify version is correct..."
 eval "git diff HEAD"
 info "to update git:"
-info "\t\$ git tab -a $version -m \"$version\""
+info "\t\$ git commit -am \"bump to $version\""
+info "\t\$ git tag -a $version -m \"$version\""
 info "\t\$ git push --tags"
