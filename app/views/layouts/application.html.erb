@@ -8,8 +8,8 @@
 </head>
 <body>
 
-  <% @customers = Customer.where(:active => true) %>
-  <% @projects = Project.where("status != 'complete'")  %>
+  <% @customers = Customer.where(:active => true).sort_by{|l| l[:title]} %>
+  <% @projects = Project.where("status != 'complete'").sort_by{|l| l[:title]}  %>
 
   <!-- Header navbar -->
   <div class="navbar navbar-default navbar-static-top" role="navigation">
