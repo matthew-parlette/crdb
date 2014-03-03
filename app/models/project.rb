@@ -8,6 +8,7 @@ class Project < ActiveRecord::Base
   before_save :update_completed_date
   
   validates :title, presence: true
+  validates :customer_id, presence: true
   validates :status, presence: true
   validates_inclusion_of :status, :in => status_options()
 
