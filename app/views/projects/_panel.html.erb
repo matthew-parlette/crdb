@@ -1,15 +1,18 @@
+<% collapsable = true if collapsable.nil? %>
 <% if project.customer_id %>
   <% customer = Customer.find(project.customer_id) %>
 <% end %>
 <div class="panel panel-collapsed panel-<%=status_color(project.status)%>">
-  <div class="panel-heading clickable">
+  <div class="panel-heading <%if collapsable %>clickable<% end %>">
     <div class="panel-title"><%= project.title %> - 
       <%= render partial: 'projects/status', locals: {project: project} %>
     </div>
     
-    <span class="pull-right">
-      <i class="glyphicon glyphicon-minus"></i>
-    </span>
+    <%if collapsable %>
+      <span class="pull-right">
+        <i class="glyphicon glyphicon-minus"></i>
+      </span>
+    <% end %>
   </div>
   <div class="panel-body">
     <!-- nav tabs -->
