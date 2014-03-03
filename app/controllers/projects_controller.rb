@@ -5,9 +5,9 @@ class ProjectsController < ApplicationController
 
   def index
     if params.has_key?(:customer_id)
-      @projects = Project.where(:customer_id => params[:customer_id])
+      @projects = Project.where(:customer_id => params[:customer_id]).sort_by{|l| l[:title]}
     else
-      @projects = Project.all
+      @projects = Project.all.sort_by{|l| l[:title]}
     end
     @projects = ordered_projects(@projects)
     respond_to do |format|
