@@ -20,6 +20,9 @@
       <li class="active"><a href="#overview-<%=project.id%>" data-toggle="tab">
         <span class="glyphicon glyphicon-stats"></span> Overview
       </a></li>
+      <li><a href="#tasks-<%=project.id%>" data-toggle="tab">
+        <span class="glyphicon glyphicon-ok"></span> Tasks
+      </a></li>
       <li><a href="#settings-<%=project.id%>" data-toggle="tab">
         <span class="glyphicon glyphicon-cog"></span> Settings
       </a></li>
@@ -34,6 +37,11 @@
         <p><strong>Due Date: </strong><%= project.due_date %></p>
         <p><strong>Completed Date: </strong><%= project.completed_date %></p>
       </div> <!-- overview pane -->
+      
+      <div class="well tab-pane" id="tasks-<%=project.id%>">
+        <p>Tasks go here</p>
+      </div> <!-- tasks pane -->
+      
       <div class="well tab-pane" id="settings-<%=project.id%>">
         <div class="btn-group">
           <%= link_to "<span class='glyphicon glyphicon-wrench'></span> edit".html_safe, edit_project_path(project), class: "btn btn-default", :remote => true %>
