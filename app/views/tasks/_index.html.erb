@@ -1,0 +1,15 @@
+<div>
+  <ul class="list-group checked-list-box">
+    <% tasks.each do |task| %>
+      <li class="list-group-item" <% if task.completed %>data-checked="true"<% end %>
+        id="<%= task.id %>">
+        <%= task.title %>
+      </li>
+    <% end %>
+  </ul>
+  <% if project %>
+    <%= link_to "add task", new_project_task_path(project) %>
+  <% else %>
+    <%= link_to "add task", new_task_path %>
+  <% end %>
+</div>

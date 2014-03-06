@@ -39,11 +39,7 @@
       </div> <!-- overview pane -->
       
       <div class="well tab-pane" id="tasks-<%=project.id%>">
-        <ul class="list-group checked-list-box">
-          <li class="list-group-item" id="1">Cras justo odio</li>
-          <li class="list-group-item" id="2" data-checked="true">Dapibus ac facilisis in</li>
-        </ul>
-        <%= link_to "add task", "#" %>
+        <%= render partial: 'tasks/index', locals: {project: project, tasks: Task.where(:project_id => project.id)} %>
       </div> <!-- tasks pane -->
       
       <div class="well tab-pane" id="settings-<%=project.id%>">
