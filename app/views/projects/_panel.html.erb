@@ -17,8 +17,12 @@
   <div class="panel-body">
     <!-- nav tabs -->
     <ul class="nav nav-tabs" id="project-tab">
-      <li class="active"><a href="#overview-<%=project.id%>" data-toggle="tab">Overview</a></li>
-      <li><a href="#settings-<%=project.id%>" data-toggle="tab">Settings</a></li>
+      <li class="active"><a href="#overview-<%=project.id%>" data-toggle="tab">
+        <span class="glyphicon glyphicon-stats"></span> Overview
+      </a></li>
+      <li><a href="#settings-<%=project.id%>" data-toggle="tab">
+        <span class="glyphicon glyphicon-cog"></span> Settings
+      </a></li>
     </ul> <!-- nav-tabs -->
     
     <!-- tab panes -->
@@ -32,8 +36,8 @@
       </div> <!-- overview pane -->
       <div class="well tab-pane" id="settings-<%=project.id%>">
         <div class="btn-group">
-          <%= link_to "edit", edit_project_path(project), class: "btn btn-default", :remote => true %>
-          <%= link_to "delete", project_path(project), method: "delete", class: "btn btn-default", data: { confirm: 'Are you sure?' } %>
+          <%= link_to "<span class='glyphicon glyphicon-wrench'></span> edit".html_safe, edit_project_path(project), class: "btn btn-default", :remote => true %>
+          <%= link_to "<span class='glyphicon glyphicon-trash'></span> delete".html_safe, project_path(project), method: "delete", class: "btn btn-default", data: { confirm: 'Are you sure?' } %>
         </div>
         <table class="table table-hover">
           <tr>
