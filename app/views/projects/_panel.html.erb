@@ -39,7 +39,11 @@
       </div> <!-- overview pane -->
       
       <div class="well tab-pane" id="tasks-<%=project.id%>">
-        <p>Tasks go here</p>
+        <ul class="list-group checked-list-box">
+          <li class="list-group-item" id="1">Cras justo odio</li>
+          <li class="list-group-item" id="2" data-checked="true">Dapibus ac facilisis in</li>
+        </ul>
+        <%= link_to "add task", "#" %>
       </div> <!-- tasks pane -->
       
       <div class="well tab-pane" id="settings-<%=project.id%>">
