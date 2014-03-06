@@ -8,8 +8,11 @@
     <% end %>
   </ul>
   <% if project %>
-    <%= link_to "add task", new_project_task_path(project) %>
-  <% else %>
-    <%= link_to "add task", new_task_path %>
+    <% @task = Task.new %>
+    <%= form_for @task, html: { class: "form-inline" } do |f| %>
+      <%= f.text_field :title, :placeholder => "add task", :class => "form-control" %>
+      <%= f.hidden_field :project_id, :value => project.id %>
+      <%= f.hidden_field :completed, :value => false %>
+    <% end %>
   <% end %>
 </div>

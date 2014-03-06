@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_filter :print_params
+  before_filter :save_previous_page, :only => [:create, :update]
   
   def show
   end
@@ -25,7 +26,7 @@ class TasksController < ApplicationController
     respond_to do |format|
       if @task.save
         flash[:notice] = 'Task was successfully created.'
-        format.html { redirect_to @task }
+        format.html { redirect_to session[:back] }
         format.json { render json: @task, status: :created }
       else
         format.html { render 'new' }
@@ -46,6 +47,10 @@ class TasksController < ApplicationController
   private
     def print_params
       print params
+    end
+    
+    def save_previous_page
+      session[:back] = :back
     end
     
     def filtered_params
