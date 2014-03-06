@@ -4,6 +4,7 @@ class Project < ActiveRecord::Base
   include ActiveModel::Dirty
   
   belongs_to :customer
+  has_many :task
   
   before_save :update_completed_date
   
