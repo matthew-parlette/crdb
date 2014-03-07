@@ -12,6 +12,7 @@
           data-url="<%= task_path(task) %>" 
           id="<%= task.id %>">
           <%= task.title %>
+          <button type="button" class="close pull-right" aria-hidden="true">&times;</button>
         </li>
       <% end %>
     </ul>
