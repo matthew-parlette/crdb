@@ -1,25 +1,21 @@
 <% if project.status.in?(['waiting on customer','on hold','new']) %>
-  <button class="btn btn-default btn-workflow"
+  <button class="btn btn-<%= status_color("in progress") %> btn-workflow"
     data-url="<%= project_url(project) %>"
     data-status="in progress">start</button>
 <% elsif project.status.in?(['in progress']) %>
-  <span class="btn-group" style="margin: 0;">
-    <button class="btn btn-default btn-workflow"
-      data-url="<%= project_url(project) %>"
-      data-status="complete">complete</button>
-  </span>
+  <button class="btn btn-<%= status_color("complete") %> btn-workflow"
+    data-url="<%= project_url(project) %>"
+    data-status="complete">complete</button>
 <% elsif project.status.in?(['complete']) %>
-  <span class="btn-group" style="margin: 0;">
-    <button class="btn btn-default btn-workflow"
-      data-url="<%= project_url(project) %>"
-      data-status="delivered">deliver</button>
-  </span>
+  <button class="btn btn-<%= status_color("delivered") %> btn-workflow"
+    data-url="<%= project_url(project) %>"
+    data-status="delivered">deliver</button>
 <% elsif project.status.in?(['delivered']) %>
   <span class="btn-group" style="margin: 0;">
-    <button class="btn btn-default btn-workflow"
+    <button class="btn btn-<%= status_color("accepted") %> btn-workflow"
       data-url="<%= project_url(project) %>"
       data-status="accepted">accept</button>
-    <button class="btn btn-default btn-workflow"
+    <button class="btn btn-danger btn-workflow"
       data-url="<%= project_url(project) %>"
       data-status="new">decline</button>
   </span>
