@@ -1,23 +1,23 @@
 <% if project.status.in?(['waiting on customer','on hold','new']) %>
-  <button class="btn btn-<%= status_color("in progress") %> btn-workflow"
-    data-url="<%= project_url(project) %>"
-    data-status="in progress">start</button>
+  <%= render partial: "workflow_button", locals: { project: project,
+                                                   to_status: "in progress",
+                                                   text: "start"} %>
 <% elsif project.status.in?(['in progress']) %>
-  <button class="btn btn-<%= status_color("complete") %> btn-workflow"
-    data-url="<%= project_url(project) %>"
-    data-status="complete">complete</button>
+  <%= render partial: "workflow_button", locals: { project: project,
+                                                   to_status: "complete",
+                                                   text: "complete"} %>
 <% elsif project.status.in?(['complete']) %>
-  <button class="btn btn-<%= status_color("delivered") %> btn-workflow"
-    data-url="<%= project_url(project) %>"
-    data-status="delivered">deliver</button>
+  <%= render partial: "workflow_button", locals: { project: project,
+                                                   to_status: "delivered",
+                                                   text: "deliver"} %>
 <% elsif project.status.in?(['delivered']) %>
   <span class="btn-group" style="margin: 0;">
-    <button class="btn btn-<%= status_color("accepted") %> btn-workflow"
-      data-url="<%= project_url(project) %>"
-      data-status="accepted">accept</button>
-    <button class="btn btn-danger btn-workflow"
-      data-url="<%= project_url(project) %>"
-      data-status="new">decline</button>
+    <%= render partial: "workflow_button", locals: { project: project,
+                                                     to_status: "accepted",
+                                                     text: "accept"} %>
+    <%= render partial: "workflow_button", locals: { project: project,
+                                                     to_status: "new",
+                                                     text: "decline"} %>
   </span>
 <% elsif project.status.in?(['accepted']) %>
 <% else %>
