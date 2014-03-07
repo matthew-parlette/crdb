@@ -15,6 +15,7 @@ $(document).on "click", ".btn-workflow", ->
     data: { project: { status: $(this).attr("data-status") } }
     success: ->
       #alert "updated project status"
+      location.reload()
 
 ###
 update status selection via ajax
@@ -29,6 +30,7 @@ $(document).on "click", ".dropdown-menu li a", ->
     data: { project: { status: $(this).text() } }
     success: ->
       #alert "updated project status"
+      location.reload()
 
 ###
 collapsable panels
