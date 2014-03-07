@@ -1,7 +1,10 @@
 <div>
   <ul class="list-group checked-list-box">
     <% tasks.each do |task| %>
-      <li class="list-group-item" <% if task.completed %>data-checked="true"<% end %>
+      <li
+        class="list-group-item" 
+        <% if task.completed %>data-checked="true"<% end %> 
+        data-url="<%= task_path(task) %>" 
         id="<%= task.id %>">
         <%= task.title %>
       </li>

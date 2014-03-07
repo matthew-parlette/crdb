@@ -64,7 +64,14 @@ ready = ->
         return
       
       $widget.on "update", ->
-        alert "updating " + $widget.attr("id") + " to " + $checkbox.is(":checked")
+        #alert "updating " + $widget.attr("id") + " to " + $checkbox.is(":checked")
+        $.ajax
+          url: $widget.attr("data-url"),
+          type: 'PATCH',
+          dataType: 'json',
+          data: { task: { completed: $checkbox.is(":checked") } }
+          success: ->
+            #alert "updated project status"
         return
 
       init()
