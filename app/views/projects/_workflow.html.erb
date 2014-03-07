@@ -1,0 +1,39 @@
+<% if project.status.in?(['waiting on customer','on hold','new']) %>
+  <%= render partial: "workflow_button", locals: { project: project,
+                                                   to_status: "in progress",
+                                                   text: "start"} %>
+<% elsif project.status.in?(['in progress']) %>
+  <%= render partial: "workflow_button", locals: { project: project,
+                                                   to_status: "complete",
+                                                   text: "complete"} %>
+<% elsif project.status.in?(['complete']) %>
+  <%= render partial: "workflow_button", locals: { project: project,
+                                                   to_status: "delivered",
+                                                   text: "deliver"} %>
+<% elsif project.status.in?(['delivered']) %>
+  <span class="btn-group" style="margin: 0;">
+    <%= render partial: "workflow_button", locals: { project: project,
+                                                     to_status: "accepted",
+                                                     text: "accept"} %>
+    <%= render partial: "workflow_button", locals: { project: project,
+                                                     to_status: "new",
+                                                     text: "decline"} %>
+  </span>
+<% elsif project.status.in?(['accepted']) %>
+<% else %>
+  <span class="dropdown">
+    <span class="dropdown-toggle" id="project-<%= project.id%>-status" data-toggle="dropdown">
+      <%= project.status %>
+      <b class="caret"></b>
+    </span>
+    <ul class="dropdown-menu project-status" role="menu" aria-labelledby="project-<%= project.id%>-status">
+      <% for status in status_options() %>
+        <li role="presentation">
+          <%= link_to status, "#", data: { url: project_url(project),
+                                           status: status
+                                         }, "role" => "menuitem" %>
+        </li>
+      <% end %>
+    </ul>
+  </span>
+<% end %>

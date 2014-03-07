@@ -3,16 +3,23 @@
   <% customer = Customer.find(project.customer_id) %>
 <% end %>
 <div class="panel panel-collapsed panel-<%=status_color(project.status)%>">
-  <div class="panel-heading <%if collapsable %>clickable<% end %>">
-    <div class="panel-title"><%= project.title %> - 
-      <%= render partial: 'projects/status', locals: {project: project} %>
-    </div>
-    
-    <%if collapsable %>
-      <span class="pull-right">
-        <i class="glyphicon glyphicon-minus"></i>
-      </span>
-    <% end %>
+  <div class="panel-heading <%if collapsable %>clickable<% end %> container-fluid" style="padding-top:.5em;">
+    <div class="panel-title project-panel-title row-fluid">
+      <div class="col-md-2">
+        <div class="project-title"><%= project.title %></div><br>
+        <% if customer %><div class="project-customer-title text-muted"><%= customer.title %></div><% end %>
+      </div>
+      <div class="col-md-4">
+        <%= render partial: 'projects/workflow', locals: {project: project} %>
+      </div>
+      <div class="col-md-5">
+      </div>
+      <%if collapsable %>
+        <div class="pull-right">
+          <i class="glyphicon glyphicon-minus" style="font-size: .8em;"></i>
+        </div>
+      <% end %>
+    </div> <!-- row-fluid -->
   </div>
   <div class="panel-body">
     <!-- nav tabs -->

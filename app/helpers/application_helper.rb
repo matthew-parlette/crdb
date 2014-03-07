@@ -6,7 +6,8 @@ module ApplicationHelper
                'on hold',
                'cancelled',
                'delivered',
-               'complete'
+               'complete',
+               'accepted'
               ]
     return options
   end
@@ -27,6 +28,8 @@ module ApplicationHelper
           return "info"
      elsif status == "complete"
           return "success"
+     elsif status == "accepted"
+          return "success"
      else
           return "default"
      end
@@ -38,9 +41,9 @@ module ApplicationHelper
      projects = {:active => [], :inactive => [], :closed => []}
      
      project_list.each do |project|
-          if project.status.in?(['waiting on customer','on hold','delivered'])
+          if project.status.in?(['waiting on customer','on hold','delivered','complete'])
                projects[:inactive].push(project)
-          elsif project.status.in?(['cancelled','complete'])
+          elsif project.status.in?(['cancelled','accepted'])
                projects[:closed].push(project)
           else
                projects[:active].push(project)

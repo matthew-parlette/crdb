@@ -3,6 +3,21 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 ###
+update status from workflow buttons
+###
+$(document).on "click", ".btn-workflow", ->
+  #abort if data-url is not defined
+  return if $(this).attr("data-url") == undefined
+  $.ajax
+    url: $(this).attr("data-url"),
+    type: 'PATCH',
+    dataType: 'json',
+    data: { project: { status: $(this).attr("data-status") } }
+    success: ->
+      #alert "updated project status"
+      location.reload()
+
+###
 update status selection via ajax
 ###
 $(document).on "click", ".dropdown-menu li a", ->
@@ -15,6 +30,7 @@ $(document).on "click", ".dropdown-menu li a", ->
     data: { project: { status: $(this).text() } }
     success: ->
       #alert "updated project status"
+      location.reload()
 
 ###
 collapsable panels
