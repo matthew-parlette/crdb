@@ -1,4 +1,11 @@
 Crdb::Application.routes.draw do
+  get "tasks/show"
+  get "tasks/index"
+  get "tasks/new"
+  get "tasks/create"
+  get "tasks/edit"
+  get "tasks/update"
+  get "tasks/destroy"
   get "home/index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -9,7 +16,11 @@ Crdb::Application.routes.draw do
     resources :projects
   end
   
-  resources :projects
+  resources :projects do
+    resources :tasks
+  end
+  
+  resources :tasks
   
   get '/projects/:id/status', to: 'projects#status', as: 'project_status'
 

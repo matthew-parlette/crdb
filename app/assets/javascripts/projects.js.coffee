@@ -2,7 +2,9 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-# update status selection via ajax
+###
+update status selection via ajax
+###
 $(document).on "click", ".dropdown-menu li a", ->
   #abort if data-url is not defined
   return if $(this).attr("data-url") == undefined
@@ -14,7 +16,9 @@ $(document).on "click", ".dropdown-menu li a", ->
     success: ->
       #alert "updated project status"
 
-# expand/collapse project panels
+###
+collapsable panels
+###
 $(document).on "click", ".panel-heading span.clickable", (e) ->
   $this = $(this)
   unless $this.hasClass("panel-collapsed")

@@ -1,0 +1,30 @@
+<h1>Tasks#new</h1>
+<%= form_for @task, :html => { :class => "text-center" } do |f| %>
+  <% if @task.errors.any? %>
+    <% @task.errors.full_messages.each do |msg| %>
+      <div class="alert alert-danger"><%= msg %></div>
+    <% end %>
+  <% end %>
+
+  <div class="field control-group">
+    <%= f.label :title, :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :title, :autofocus => true %>
+    </div>
+  </div>
+  <div class="field control-group">
+    <%= f.label :project_id, :class => "control-label" %>
+    <div class="controls">
+      <%= collection_select(:task, :project_id, Project.all, :id, :title, prompt: true) %>
+    </div>
+  </div>
+  <div class="field control-group">
+    <%= f.label :completed, :class => "control-label" %>
+    <div class="controls">
+      <%= f.check_box :completed %>
+    </div>
+  </div>
+  <div class="actions text-center">
+    <%= f.submit %>
+  </div>
+<% end %>

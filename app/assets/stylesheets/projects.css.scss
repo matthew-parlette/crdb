@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+/* collapsable panels */
 .clickable
 {
     cursor: pointer;
@@ -23,3 +24,8 @@
 }
 a.clickable { color: inherit; }
 a.clickable:hover { text-decoration:none; }
+
+/* task list */
+.state-icon {
+    left: -5px;
+}

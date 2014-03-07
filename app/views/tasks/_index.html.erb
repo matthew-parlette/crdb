@@ -1,0 +1,27 @@
+<div>
+  <% if tasks.empty? %>
+    <ul class="list-group">
+      <li class="list-group-item">No Tasks</li>
+    </ul>
+  <% else %>
+    <ul class="list-group checked-list-box">
+      <% tasks.each do |task| %>
+        <li
+          class="list-group-item" 
+          <% if task.completed %>data-checked="true"<% end %> 
+          data-url="<%= task_path(task) %>" 
+          id="<%= task.id %>">
+          <%= task.title %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+  <% if project %>
+    <% @task = Task.new %>
+    <%= form_for @task, html: { class: "form-inline" } do |f| %>
+      <%= f.text_field :title, :placeholder => "add task", :class => "form-control" %>
+      <%= f.hidden_field :project_id, :value => project.id %>
+      <%= f.hidden_field :completed, :value => false %>
+    <% end %>
+  <% end %>
+</div>
