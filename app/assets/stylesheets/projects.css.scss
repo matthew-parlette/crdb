@@ -16,11 +16,9 @@
     border-radius: 4px
 }
 
-.panel-heading span
+.panel-heading
 {
-    margin-top: -23px;
-    font-size: 15px;
-    margin-right: -9px;
+    margin-bottom: -.5em;
 }
 a.clickable { color: inherit; }
 a.clickable:hover { text-decoration:none; }
@@ -28,4 +26,14 @@ a.clickable:hover { text-decoration:none; }
 /* task list */
 .state-icon {
     left: -5px;
+}
+
+.project-panel-title {
+    line-height: 1em;
+}
+
+.project-customer-title {
+    font-size: .8em;
+    margin-top: -1.5em;
+    text-indent: 1em;
 }
