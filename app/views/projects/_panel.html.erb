@@ -5,7 +5,7 @@
 <div class="panel panel-collapsed panel-<%=status_color(project.status)%>">
   <div class="panel-heading <%if collapsable %>clickable<% end %>">
     <div class="panel-title"><%= project.title %> - 
-      <%= render partial: 'projects/status', locals: {project: project} %>
+      <%= render partial: 'projects/workflow', locals: {project: project} %>
     </div>
     
     <%if collapsable %>

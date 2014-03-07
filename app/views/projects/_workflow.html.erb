@@ -1,0 +1,43 @@
+<% if project.status.in?(['waiting on customer','on hold','new']) %>
+  <button class="btn btn-default btn-workflow"
+    data-url="<%= project_url(project) %>"
+    data-status="in progress">start</button>
+<% elsif project.status.in?(['in progress']) %>
+  <span class="btn-group" style="margin: 0;">
+    <button class="btn btn-default btn-workflow"
+      data-url="<%= project_url(project) %>"
+      data-status="complete">complete</button>
+  </span>
+<% elsif project.status.in?(['complete']) %>
+  <span class="btn-group" style="margin: 0;">
+    <button class="btn btn-default btn-workflow"
+      data-url="<%= project_url(project) %>"
+      data-status="delivered">deliver</button>
+  </span>
+<% elsif project.status.in?(['delivered']) %>
+  <span class="btn-group" style="margin: 0;">
+    <button class="btn btn-default btn-workflow"
+      data-url="<%= project_url(project) %>"
+      data-status="accepted">accept</button>
+    <button class="btn btn-default btn-workflow"
+      data-url="<%= project_url(project) %>"
+      data-status="new">decline</button>
+  </span>
+<% elsif project.status.in?(['accepted']) %>
+<% else %>
+  <span class="dropdown">
+    <span class="dropdown-toggle" id="project-<%= project.id%>-status" data-toggle="dropdown">
+      <%= project.status %>
+      <b class="caret"></b>
+    </span>
+    <ul class="dropdown-menu project-status" role="menu" aria-labelledby="project-<%= project.id%>-status">
+      <% for status in status_options() %>
+        <li role="presentation">
+          <%= link_to status, "#", data: { url: project_url(project),
+                                           status: status
+                                         }, "role" => "menuitem" %>
+        </li>
+      <% end %>
+    </ul>
+  </span>
+<% end %>
