@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_filter :print_params
-  before_filter :save_previous_page, :only => [:create, :update]
+  before_filter :save_previous_page, :only => [:create, :update, :destroy]
   
   def show
   end
@@ -52,6 +52,22 @@ class TasksController < ApplicationController
   end
 
   def destroy
+    find_task
+    task_title = @task.title
+    
+    respond_to do |format|
+      if @task.destroy
+        flash[:notice] = "Deleted task '#{task_title}'."
+        format.html { redirect_to(session[:back]) }
+        format.js   {}
+        format.json { render json: @task, status: :deleted }
+      else
+        flash[:alert] = "Task could not be deleted."
+        format.html { render json: @task.errors, status: :unprocessable_entity }
+        format.js   {}
+        format.json { render json: @task.errors, status: :unprocessable_entity }
+      end
+    end
   end
   
   private
