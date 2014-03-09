@@ -52,4 +52,19 @@ module ApplicationHelper
      
      return projects
   end
+  
+  #if the @notice or @alert arrays are set, move them into the
+  # flash hash, separating each element with line breaks.
+  # if @errors are defined, those will be added
+  def format_flash
+     if @alert
+          if @errors
+               @alert.push("<ul>")
+               @alert.concat(@errors.to_a())
+               @alert.push("</ul>")
+          end
+          flash[:alert] = @alert.join("<br>").html_safe
+     end
+     flash[:notice] = @notice.join("<br>").html_safe if @notice
+  end
 end

@@ -1,6 +1,9 @@
+include ApplicationHelper
+
 class TasksController < ApplicationController
   before_filter :print_params
   before_filter :save_previous_page, :only => [:create, :update, :destroy]
+  after_filter :format_flash
   
   def show
   end
@@ -45,7 +48,8 @@ class TasksController < ApplicationController
       if @task.update(filtered_params)
         format.json { render json: @task }
       else
-        flash[:alert] = 'Project could not be updated.'
+        @alert = ["'#{@task.title}' could not be updated."]
+        @errors = @task.errors
         format.json { render json: @task.errors, :status => :unprocessable_entity }
       end
     end
@@ -62,7 +66,8 @@ class TasksController < ApplicationController
         format.js   {}
         format.json { render json: @task, status: :deleted }
       else
-        flash[:alert] = "Task could not be deleted."
+        @alert = ["'#{@task.title}' could not be deleted."]
+        @errors = @task.errors
         format.html { render json: @task.errors, status: :unprocessable_entity }
         format.js   {}
         format.json { render json: @task.errors, status: :unprocessable_entity }

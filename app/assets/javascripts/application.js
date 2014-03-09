@@ -18,3 +18,12 @@
 //= require jquery.modal
 //= require bootstrap-datepicker
 //= require_tree .
+
+function hideAlerts() {
+    $("#alert").alert('close')
+    $("#notice").alert('close')
+}
+
+window.setTimeout(function () {
+    hideAlerts();
+}, 5000);

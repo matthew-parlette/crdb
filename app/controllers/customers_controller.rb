@@ -1,4 +1,8 @@
+include ApplicationHelper
+
 class CustomersController < ApplicationController
+  after_filter :format_flash
+  
   def index
     @customers = Customer.all
     respond_to do |format|
@@ -24,7 +28,7 @@ class CustomersController < ApplicationController
     
     respond_to do |format|
       if @customer.save
-        flash[:notice] = 'Customer was successfully created.'
+        flash[:notice] = "Customer '#{@customer.title}' was successfully created."
         format.html { redirect_to @customer }
         format.json { render json: @customer, status: :created }
       else
@@ -43,10 +47,11 @@ class CustomersController < ApplicationController
     
     respond_to do |format|
       if @customer.update(filtered_params)
-        flash[:notice] = 'Customer was successfully updated.'
+        flash[:notice] = "'#{@customer.title}' was successfully updated."
         format.html { render 'show' }
       else
-        flash[:alert] = 'Customer could not be updated.'
+        @alert = ["'#{@customer.title}' could not be updated."]
+        @errors = @customer.errors
         format.html { render 'edit' }
       end
     end
@@ -57,12 +62,13 @@ class CustomersController < ApplicationController
     
     respond_to do |format|
       if @customer.destroy
-        flash[:notice] = "Successfully deleted customer."
+        flash[:notice] = "Successfully deleted '#{@customer.title}'."
         format.html { redirect_to(customers_path) }
         format.js   {}
         format.json { render json: @customer, status: :deleted }
       else
-        flash[:alert] = "Customer could not be deleted."
+        @alert = ["'#{@customer.title}' could not be deleted."]
+        @errors = @customer.errors
         format.html { render json: @customer.errors, status: :unprocessable_entity }
         format.js   {}
         format.json { render json: @customer.errors, status: :unprocessable_entity }
