@@ -60,7 +60,7 @@ module ApplicationHelper
      if @alert
           if @errors
                @alert.push("<ul>")
-               @alert.concat(@project.errors.to_a())
+               @alert.concat(@errors.to_a())
                @alert.push("</ul>")
           end
           flash[:alert] = @alert.join("<br>").html_safe
