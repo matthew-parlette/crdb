@@ -47,10 +47,10 @@ class CustomersController < ApplicationController
     
     respond_to do |format|
       if @customer.update(filtered_params)
-        flash[:notice] = "'${@customer.title}' was successfully updated."
+        flash[:notice] = "'#{@customer.title}' was successfully updated."
         format.html { render 'show' }
       else
-        @alert = ["'${@customer.title}' could not be updated."]
+        @alert = ["'#{@customer.title}' could not be updated."]
         @errors = @customer.errors
         format.html { render 'edit' }
       end
@@ -62,12 +62,12 @@ class CustomersController < ApplicationController
     
     respond_to do |format|
       if @customer.destroy
-        flash[:notice] = "Successfully deleted '${@customer.title}'."
+        flash[:notice] = "Successfully deleted '#{@customer.title}'."
         format.html { redirect_to(customers_path) }
         format.js   {}
         format.json { render json: @customer, status: :deleted }
       else
-        @alert = ["'${@customer.title}' could not be deleted."]
+        @alert = ["'#{@customer.title}' could not be deleted."]
         @errors = @customer.errors
         format.html { render json: @customer.errors, status: :unprocessable_entity }
         format.js   {}
