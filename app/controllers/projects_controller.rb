@@ -2,6 +2,8 @@ include ApplicationHelper
 
 class ProjectsController < ApplicationController
   before_filter :print_params
+  before_filter :find_customer
+  after_filter :format_flash
 
   def index
     if params.has_key?(:customer_id)
@@ -37,7 +39,7 @@ class ProjectsController < ApplicationController
     
     respond_to do |format|
       if @project.save
-        flash[:notice] = 'Project was successfully created.'
+        flash[:notice] = "Project '#{@project.title}' was successfully created for '#{@customer}'."
         format.html { redirect_to @project }
         format.json { render json: @project, status: :created }
       else
@@ -56,7 +58,7 @@ class ProjectsController < ApplicationController
     
     respond_to do |format|
       if @project.update(filtered_params)
-        flash[:notice] = 'Project was successfully updated.'
+        flash[:notice] = "Project '#{@project.title}' was successfully updated."
         format.json { render json: @project }
         
         if session.has_key?("back")
@@ -65,7 +67,8 @@ class ProjectsController < ApplicationController
           format.html { render 'show' }
         end
       else
-        flash[:alert] = 'Project could not be updated.'
+        @alert = ["Project '#{@project.title}' could not be updated."]
+        @errors = @project.errors
         format.html { render 'edit' }
         format.json { render json: @project.errors, :status => :unprocessable_entity }
       end
@@ -74,15 +77,17 @@ class ProjectsController < ApplicationController
   
   def destroy
     find_project
+    project_title = @project.title
     
     respond_to do |format|
       if @project.destroy
-        flash[:notice] = "Successfully deleted project."
+        flash[:notice] = "Successfully deleted '#{project_title}' for '#{@customer}'."
         format.html { redirect_to(projects_path) }
         format.js   {}
         format.json { render json: @project, status: :deleted }
       else
-        flash[:alert] = "Project could not be deleted."
+        @alert = ["Project '#{project_title}' could not be deleted."]
+        @errors = @project.errors
         format.html { render json: @project.errors, status: :unprocessable_entity }
         format.js   {}
         format.json { render json: @project.errors, status: :unprocessable_entity }
@@ -98,6 +103,12 @@ class ProjectsController < ApplicationController
   private
     def print_params
       print params
+    end
+    
+    def find_customer
+      if @project and @project.customer_id
+        @customer = Customer.find(@project.customer_id)
+      end
     end
     
     def filtered_params
