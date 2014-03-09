@@ -1,9 +1,10 @@
 <% collapsable = true if collapsable.nil? %>
+<% panel_clickable = true if panel_clickable.nil? %>
 <% if project.customer_id %>
   <% customer = Customer.find(project.customer_id) %>
 <% end %>
 <div class="panel panel-collapsed panel-<%=status_color(project.status)%>">
-  <div class="panel-heading <%if collapsable %>clickable<% end %> container-fluid" style="padding-top:.5em;">
+  <div class="panel-heading <%if collapsable and panel_clickable %>clickable<% end %> container-fluid" style="padding-top:.5em;">
     <div class="panel-title project-panel-title row-fluid">
       <div class="col-md-2">
         <div class="project-title"><%= project.title %></div><br>
@@ -15,7 +16,7 @@
       <div class="col-md-5">
       </div>
       <%if collapsable %>
-        <div class="pull-right">
+        <div class="pull-right <% if not panel_clickable %>clickable<% end %>">
           <i class="glyphicon glyphicon-minus" style="font-size: .8em;"></i>
         </div>
       <% end %>

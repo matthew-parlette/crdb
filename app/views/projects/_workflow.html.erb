@@ -1,23 +1,23 @@
 <% if project.status.in?(['waiting on customer','on hold','new']) %>
-  <%= render partial: "workflow_button", locals: { project: project,
-                                                   to_status: "in progress",
-                                                   text: "start"} %>
+  <%= render partial: "projects/workflow_button", locals: { project: project,
+                                                            to_status: "in progress",
+                                                            text: "start"} %>
 <% elsif project.status.in?(['in progress']) %>
-  <%= render partial: "workflow_button", locals: { project: project,
-                                                   to_status: "complete",
-                                                   text: "complete"} %>
+  <%= render partial: "projects/workflow_button", locals: { project: project,
+                                                            to_status: "complete",
+                                                            text: "complete"} %>
 <% elsif project.status.in?(['complete']) %>
-  <%= render partial: "workflow_button", locals: { project: project,
-                                                   to_status: "delivered",
-                                                   text: "deliver"} %>
+  <%= render partial: "projects/workflow_button", locals: { project: project,
+                                                            to_status: "delivered",
+                                                            text: "deliver"} %>
 <% elsif project.status.in?(['delivered']) %>
   <span class="btn-group" style="margin: 0;">
-    <%= render partial: "workflow_button", locals: { project: project,
-                                                     to_status: "accepted",
-                                                     text: "accept"} %>
-    <%= render partial: "workflow_button", locals: { project: project,
-                                                     to_status: "new",
-                                                     text: "decline"} %>
+    <%= render partial: "projects/workflow_button", locals: { project: project,
+                                                              to_status: "accepted",
+                                                              text: "accept"} %>
+    <%= render partial: "projects/workflow_button", locals: { project: project,
+                                                              to_status: "new",
+                                                              text: "decline"} %>
   </span>
 <% elsif project.status.in?(['accepted']) %>
 <% else %>
