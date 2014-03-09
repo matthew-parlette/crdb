@@ -20,7 +20,8 @@
 //= require_tree .
 
 function hideAlerts() {
-    $(".alert").alert('close')
+    $("#alert").alert('close')
+    $("#notice").alert('close')
 }
 
 window.setTimeout(function () {
