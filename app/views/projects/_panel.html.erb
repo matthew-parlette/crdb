@@ -3,7 +3,7 @@
 <% if project.customer_id %>
   <% customer = Customer.find(project.customer_id) %>
 <% end %>
-<div class="panel panel-collapsed panel-<%=status_color(project.status)%>">
+<div class="panel panel-collapsed panel-<%=status_color(project.status)%> project-panel">
   <div class="panel-heading <%if collapsable and panel_clickable %>clickable<% end %> container-fluid" style="padding-top:.5em;">
     <div class="panel-title project-panel-title row-fluid">
       <div class="col-md-4">

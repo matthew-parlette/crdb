@@ -1,3 +1,24 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.projects-table .clickable{
+  cursor: pointer;   
+}
+
+.projects-table .panel-heading div {
+  margin-top: -15px;
+  font-size: 15px;
+}
+
+.projects-table .panel-heading .filter{
+  margin-left: 5px;
+}
+
+.projects-table .panel-heading i{
+  margin-top: -1em;
+}
+
+.projects-table .panel-body{
+  display: none;
+}

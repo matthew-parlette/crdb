@@ -41,7 +41,7 @@ $(document).on "click", ".dropdown-menu li a", ->
 ###
 collapsable panels
 ###
-$(document).on "click", ".panel-heading span.clickable", (e) ->
+$(document).on "click", ".project-panel .panel-heading span.clickable", (e) ->
   $this = $(this)
   unless $this.hasClass("panel-collapsed")
     $this.parents(".panel").find(".panel-body").slideUp()
@@ -53,7 +53,7 @@ $(document).on "click", ".panel-heading span.clickable", (e) ->
     $this.find("i").removeClass("glyphicon-plus").addClass "glyphicon-minus"
   return
 
-$(document).on "click", ".panel div.clickable", (e) ->
+$(document).on "click", ".project-panel div.clickable", (e) ->
   $this = $(this)
   unless $this.hasClass("panel-collapsed")
     $this.parents(".panel").find(".panel-body").slideUp()
@@ -65,10 +65,9 @@ $(document).on "click", ".panel div.clickable", (e) ->
     $this.find("i").removeClass("glyphicon-plus").addClass "glyphicon-minus"
   return
 
-$(document).ready ->
-  $(".panel div.clickable").click()
+ready = ->
+  $(".project-panel div.clickable").click()
   return
 
-$(document).on "page:load", ->
-  $(".panel div.clickable").click()
-  return
+$(document).ready(ready)
+$(document).on('page:load', ready)
