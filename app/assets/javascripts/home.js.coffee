@@ -50,12 +50,6 @@ ready = ->
   # attach table filter plugin to inputs
   $("[data-action=\"filter\"]").filterTable()
   $("#projects-table-filter").focus()
-  #$(".projects-table .filter").on "click", (e) ->
-    #$this = $(this)
-    #$panel = $this.parents(".panel")
-    #$panel.find(".panel-body").slideToggle()
-    #$panel.find(".panel-body input").focus() unless $this.css("display") is "none"
-    #return
 
   $("[data-toggle=\"tooltip\"]").tooltip()
   return
