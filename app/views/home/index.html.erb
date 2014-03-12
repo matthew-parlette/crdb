@@ -22,7 +22,7 @@
           <% @projects.keys.each do |category| %>
             <% @projects[category].each do |p| %>
               <% if p.customer_id %><% customer = Customer.find(p.customer_id) %><% end %>
-              <tr>
+              <tr class="projects-table-row" id="project-<%= p.id %>">
                 <td><%= p.title %></td>
                 <td><%= render partial: 'projects/workflow', locals: {project: p} %></td>
                 <td><% if customer %><%= customer.title %><% end %></td>

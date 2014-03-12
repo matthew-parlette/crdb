@@ -56,3 +56,12 @@ ready = ->
 
 $(document).ready(ready)
 $(document).on('page:load', ready)
+
+$(document).on "click", ".projects-table-row", ->
+  #alert $(this).attr("id")
+  id_parts = $(this).attr("id").split "-"
+  project_id = id_parts[1]
+  console.log "adding " + project_id
+  $(this).find("td").css("background-color","#ffff99")
+  #root.selected.push {"id": project_id}
+  return
