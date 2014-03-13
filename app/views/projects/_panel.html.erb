@@ -4,7 +4,7 @@
   <% customer = Customer.find(project.customer_id) %>
 <% end %>
 <div class="panel panel-collapsed panel-<%=status_color(project.status)%> project-panel">
-  <div class="panel-heading <%if collapsable and panel_clickable %>clickable<% end %> container-fluid" style="padding-top:.5em;">
+  <div class="panel-heading container-fluid" style="padding-top:.5em;">
     <div class="panel-title project-panel-title row-fluid">
       <div class="col-md-4">
         <div class="project-title"><%= project.title %></div><br>
@@ -16,13 +16,14 @@
       <div class="col-md-4">
       </div>
       <%if collapsable %>
-        <div class="pull-right <% if not panel_clickable %>clickable<% end %>">
-          <i class="glyphicon glyphicon-minus" style="font-size: .8em;"></i>
+        <div class="pull-right clickable" data-toggle="collapse" data-target="#project-<%= project.id %>-body">
+          <i class="glyphicon glyphicon-plus" style="font-size: .8em;"></i>
         </div>
       <% end %>
     </div> <!-- row-fluid -->
   </div>
-  <div class="panel-body">
+  <div id="project-<%= project.id %>-body" class="panel-collapse collapse">
+  <div class="panel-body" >
     <!-- nav tabs -->
     <ul class="nav nav-tabs" id="project-tab">
       <li class="active"><a href="#overview-<%=project.id%>" data-toggle="tab">
@@ -70,4 +71,5 @@
       </div> <!-- settings pane -->
     </div> <!-- tab-content -->
   </div> <!-- panel-body -->
+  </div>
 </div> <!-- panel -->
