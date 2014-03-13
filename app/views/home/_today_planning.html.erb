@@ -1,0 +1,32 @@
+<%= content_tag "div", class: "panel panel-primary projects-table",
+                       data: { json: ordered_projects(Project.all.sort_by{|l| l[:title]}) } do %>
+  <div class="panel-heading">
+    <h3 class="panel-title">Projects</h3>
+    <div class="pull-right">
+      <input type="text" class="form-control" id="projects-table-filter" data-action="filter" data-filters="#projects-table" placeholder="Filter Projects" />
+    </div>
+  </div>
+  <div class="panel-body">
+  </div>
+  <table class="table table-hover" id="projects-table">
+    <thead>
+      <tr>
+        <th style="width: 20%;">Project</th>
+        <th style="width: 20%;">Workflow</th>
+        <th style="width: 60%;">Company</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @projects.keys.each do |category| %>
+        <% @projects[category].each do |p| %>
+          <% if p.customer_id %><% customer = Customer.find(p.customer_id) %><% end %>
+          <tr class="projects-table-row" id="project-<%= p.id %>">
+            <td><%= p.title %></td>
+            <td><%= render partial: 'projects/workflow', locals: {project: p} %></td>
+            <td><% if customer %><%= customer.title %><% end %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
