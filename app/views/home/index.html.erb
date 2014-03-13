@@ -1,36 +1,120 @@
 <div class="container">
   <div class="row">
-    <%= content_tag "div", class: "panel panel-primary projects-table",
-                           data: { json: ordered_projects(Project.all.sort_by{|l| l[:title]}) } do %>
-      <div class="panel-heading">
-        <h3 class="panel-title">Projects</h3>
-        <div class="pull-right">
-          <input type="text" class="form-control" id="projects-table-filter" data-action="filter" data-filters="#projects-table" placeholder="Filter Projects" />
+    <div class="col-md-2">
+      <div class="panel-group" id="sidebar">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#sidebar" href="#sidebar-today"><span class="glyphicon glyphicon-calendar">
+                </span> Today</a>
+            </h4>
+          </div>
+          <div id="sidebar-today" class="panel-collapse collapse in">
+            <ul class="list-group">
+              <a href="#today-planning" class="list-group-item" data-toggle="tab">
+                <span class="glyphicon glyphicon-exclamation-sign pull-right text-danger"></span>
+                <span class="glyphicon glyphicon-pencil"></span> Planning
+              </a>
+              <a href="#today-working" class="list-group-item">
+                <span class="glyphicon glyphicon-briefcase"></span> Working
+              </a>
+              <a href="#today-tracking" class="list-group-item">
+                <span class="glyphicon glyphicon-book"></span> Tracking
+              </a>
+              <a href="#today-reporting" class="list-group-item">
+                <span class="glyphicon glyphicon-stats"></span> Reporting
+              </a>
+            </ul>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#sidebar" href="#sidebar-follow-up"><span class="glyphicon glyphicon-envelope">
+                </span> Follow-up</a>
+            </h4>
+          </div>
+          <div id="sidebar-follow-up" class="panel-collapse collapse in">
+            <ul class="list-group">
+              <a href="#follow-up-completed" class="list-group-item">
+                <span class="glyphicon glyphicon-ok"></span> Completed
+              </a>
+              <a href="#follow-up-waiting" class="list-group-item">
+                <span class="glyphicon glyphicon-time"></span> Waiting
+              </a>
+            </ul>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#sidebar" href="#sidebar-reporting"><span class="glyphicon glyphicon-folder-close">
+                </span> Reporting</a>
+            </h4>
+          </div>
+          <div id="sidebar-reporting" class="panel-collapse collapse">
+            <ul class="list-group">
+              <a href="#reporting-todo" class="list-group-item">
+                <span class="glyphicon glyphicon-pencil"></span> To-Do
+              </a>
+            </ul>
+          </div>
         </div>
       </div>
-      <div class="panel-body">
-      </div>
-      <table class="table table-hover" id="projects-table">
-        <thead>
-          <tr>
-            <th style="width: 20%;">Project</th>
-            <th style="width: 20%;">Workflow</th>
-            <th style="width: 60%;">Company</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @projects.keys.each do |category| %>
-            <% @projects[category].each do |p| %>
-              <% if p.customer_id %><% customer = Customer.find(p.customer_id) %><% end %>
-              <tr class="projects-table-row" id="project-<%= p.id %>">
-                <td><%= p.title %></td>
-                <td><%= render partial: 'projects/workflow', locals: {project: p} %></td>
-                <td><% if customer %><%= customer.title %><% end %></td>
+    </div>
+    <div class="col-md-9 tab-content">
+      <div class="tab-pane fade" id="today-planning">
+        <%= content_tag "div", class: "panel panel-primary projects-table",
+                               data: { json: ordered_projects(Project.all.sort_by{|l| l[:title]}) } do %>
+          <div class="panel-heading">
+            <h3 class="panel-title">Projects</h3>
+            <div class="pull-right">
+              <input type="text" class="form-control" id="projects-table-filter" data-action="filter" data-filters="#projects-table" placeholder="Filter Projects" />
+            </div>
+          </div>
+          <div class="panel-body">
+          </div>
+          <table class="table table-hover" id="projects-table">
+            <thead>
+              <tr>
+                <th style="width: 20%;">Project</th>
+                <th style="width: 20%;">Workflow</th>
+                <th style="width: 60%;">Company</th>
               </tr>
-            <% end %>
-          <% end %>
-        </tbody>
-      </table>
-    <% end %>
+            </thead>
+            <tbody>
+              <% @projects.keys.each do |category| %>
+                <% @projects[category].each do |p| %>
+                  <% if p.customer_id %><% customer = Customer.find(p.customer_id) %><% end %>
+                  <tr class="projects-table-row" id="project-<%= p.id %>">
+                    <td><%= p.title %></td>
+                    <td><%= render partial: 'projects/workflow', locals: {project: p} %></td>
+                    <td><% if customer %><%= customer.title %><% end %></td>
+                  </tr>
+                <% end %>
+              <% end %>
+            </tbody>
+          </table>
+        <% end %>
+      </div>
+
+      <div class="tab-pane fade" id="today-working">
+      </div>
+
+      <div class="tab-pane fade" id="today-tracking">
+      </div>
+
+      <div class="tab-pane fade" id="today-reporting">
+      </div>
+
+      <div class="tab-pane fade" id="follow-up-completed">
+      </div>
+
+      <div class="tab-pane fade" id="follow-up-waiting">
+      </div>
+
+      <div class="tab-pane fade" id="reporting-todo">
+      </div>
+    </div>
   </div>
 </div>
