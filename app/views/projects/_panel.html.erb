@@ -30,7 +30,7 @@
       </a></li>
       <li><a href="#tasks-<%=project.id%>" data-toggle="tab">
         <span class="glyphicon glyphicon-ok"></span> Tasks
-        <span class="label label-default"><%= Task.where(:project_id => project.id).count() %></span>
+        <span class="label label-default"><%= Task.where(:project_id => project.id, :completed => false).count() %></span>
       </a></li>
       <li><a href="#settings-<%=project.id%>" data-toggle="tab">
         <span class="glyphicon glyphicon-cog"></span> Settings
