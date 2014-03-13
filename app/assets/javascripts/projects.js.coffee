@@ -38,36 +38,14 @@ $(document).on "click", ".dropdown-menu li a", ->
       #error will be shown in alert div
       location.reload()
 
-###
-collapsable panels
-###
-$(document).on "click", ".project-panel .panel-heading span.clickable", (e) ->
-  $this = $(this)
-  unless $this.hasClass("panel-collapsed")
-    $this.parents(".panel").find(".panel-body").slideUp()
-    $this.addClass "panel-collapsed"
-    $this.find("i").removeClass("glyphicon-minus").addClass "glyphicon-plus"
-  else
-    $this.parents(".panel").find(".panel-body").slideDown()
-    $this.removeClass "panel-collapsed"
-    $this.find("i").removeClass("glyphicon-plus").addClass "glyphicon-minus"
-  return
-
-$(document).on "click", ".project-panel div.clickable", (e) ->
-  $this = $(this)
-  unless $this.hasClass("panel-collapsed")
-    $this.parents(".panel").find(".panel-body").slideUp()
-    $this.addClass "panel-collapsed"
-    $this.find("i").removeClass("glyphicon-minus").addClass "glyphicon-plus"
-  else
-    $this.parents(".panel").find(".panel-body").slideDown()
-    $this.removeClass "panel-collapsed"
-    $this.find("i").removeClass("glyphicon-plus").addClass "glyphicon-minus"
-  return
-
 ready = ->
-  $(".project-panel div.clickable").click()
   return
+$(document).on "click", ".project-panel .clickable", (e) ->
+  $icon = $(this).find("i")
+  if $icon.hasClass("glyphicon-plus")
+    $icon.removeClass("glyphicon-plus").addClass "glyphicon-minus"
+  else
+    $icon.removeClass("glyphicon-minus").addClass "glyphicon-plus"
 
 $(document).ready(ready)
 $(document).on('page:load', ready)
