@@ -16,7 +16,7 @@
   <div class="row-fluid">
     <div class="col-md-12">
       <%= content_tag "div", class: "panel panel-primary projects-table",
-                             data: { json: ordered_projects(Project.all.sort_by{|l| l[:title]}) } do %>
+                             data: {} do %>
         <div class="panel-heading">
           <h3 class="panel-title">Projects</h3>
           <div class="pull-right">
@@ -37,11 +37,15 @@
             <% @projects.keys.each do |category| %>
               <% @projects[category].each do |p| %>
                 <% if p.customer_id %><% customer = Customer.find(p.customer_id) %><% end %>
-                <tr class="projects-table-row" id="project-<%= p.id %>">
+                <% selected = if session[:today][:projects].include?("#{p.id}") then "selected" else "" end %>
+                <% action = if selected == "selected" then "remove" else "add" end %>
+                <%= content_tag "tr", class: "projects-table-row #{selected}",
+                                      id: "project-#{p.id}",
+                                      data: { url: home_today_path(), action: action, id: p.id } do %>
                   <td><%= p.title %></td>
                   <td><%= render partial: 'projects/workflow', locals: {project: p} %></td>
                   <td><% if customer %><%= customer.title %><% end %></td>
-                </tr>
+                <% end %>
               <% end %>
             <% end %>
           </tbody>

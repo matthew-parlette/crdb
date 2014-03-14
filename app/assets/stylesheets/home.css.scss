@@ -25,6 +25,10 @@
 	background-color: #ffff99;
 }
 
+.projects-table tbody tr:hover td, .projects-table tbody tr:hover th {
+  background-color: #ffff99;
+}
+
 #sidebar .glyphicon { margin-right:10px; }
 #sidebar .panel-collapse>.list-group .list-group-item:first-child {border-top-right-radius: 0;border-top-left-radius: 0;}
 #sidebar .panel-collapse>.list-group .list-group-item {border-width: 1px 0;}

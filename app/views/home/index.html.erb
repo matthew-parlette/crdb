@@ -1,3 +1,6 @@
+<%= javascript_tag do %>
+  window.today = <%= session[:today].to_json %>;
+<% end %>
 <div class="container">
   <div class="row">
     <div class="col-md-2">

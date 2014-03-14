@@ -52,6 +52,7 @@ ready = ->
   $("#projects-table-filter").focus()
 
   $("[data-toggle=\"tooltip\"]").tooltip()
+  update_user_instructions()
   return
 
 $(document).ready(ready)
@@ -65,18 +66,29 @@ $(document).on "click", ".projects-table-row", ->
   if $(this).hasClass("selected")
     # removing this row from the selection
     $(this).removeClass("selected")
+    $(this).attr("data-action","remove")
   else
     # highlighting a previously de-selected row
     $(this).addClass("selected")
+    $(this).attr("data-action","add")
   # update today's list with the changes
   $.ajax
-    url: $widget.attr("data-url"),
-    type: 'PATCH',
+    url: $(this).attr("data-url"),
+    type: 'POST',
     dataType: 'json',
-    data: { today: { projects: project-data } }
-    success: ->
-      #alert "updated project status"
-  # update the user instructions
-  $("#user-instructions-select-projects").find("span").removeClass("glyphicon-remove-sign").addClass("glyphicon-ok-sign")
-  $("#user-instructions-select-projects").find("span").removeClass("text-danger").addClass("text-success")
+    data: { today: { projects: { action: $(this).attr("data-action"), id: $(this).attr("data-id") } } }
+    success: (data) ->
+      #alert "selected projects: " + data
+      window.today = data
+      update_user_instructions()
+  return
+
+update_user_instructions = ->
+  #user-instructions-select-projects
+  if today.projects.length > 0
+    $("#user-instructions-select-projects").find("span").removeClass("glyphicon-remove-sign").addClass("glyphicon-ok-sign")
+    $("#user-instructions-select-projects").find("span").removeClass("text-danger").addClass("text-success")
+  else
+    $("#user-instructions-select-projects").find("span").removeClass("glyphicon-ok-sign").addClass("glyphicon-remove-sign")
+    $("#user-instructions-select-projects").find("span").removeClass("text-success").addClass("text-danger")
   return
