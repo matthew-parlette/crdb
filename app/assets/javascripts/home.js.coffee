@@ -62,6 +62,11 @@ $(document).on "click", ".projects-table-row", ->
   id_parts = $(this).attr("id").split "-"
   project_id = id_parts[1]
   console.log "adding " + project_id
+  # highlight row
   $(this).find("td").css("background-color","#ffff99")
+  # add project id to today's list
   #root.selected.push {"id": project_id}
+  # update the user instructions
+  $("#user-instructions-select-projects").find("span").removeClass("glyphicon-remove-sign").addClass("glyphicon-ok-sign")
+  $("#user-instructions-select-projects").find("span").removeClass("text-danger").addClass("text-success")
   return
