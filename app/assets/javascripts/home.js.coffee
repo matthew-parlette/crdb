@@ -62,10 +62,20 @@ $(document).on "click", ".projects-table-row", ->
   id_parts = $(this).attr("id").split "-"
   project_id = id_parts[1]
   console.log "adding " + project_id
-  # highlight row
-  $(this).find("td").css("background-color","#ffff99")
-  # add project id to today's list
-  #root.selected.push {"id": project_id}
+  if $(this).hasClass("selected")
+    # removing this row from the selection
+    $(this).removeClass("selected")
+  else
+    # highlighting a previously de-selected row
+    $(this).addClass("selected")
+  # update today's list with the changes
+  $.ajax
+    url: $widget.attr("data-url"),
+    type: 'PATCH',
+    dataType: 'json',
+    data: { today: { projects: project-data } }
+    success: ->
+      #alert "updated project status"
   # update the user instructions
   $("#user-instructions-select-projects").find("span").removeClass("glyphicon-remove-sign").addClass("glyphicon-ok-sign")
   $("#user-instructions-select-projects").find("span").removeClass("text-danger").addClass("text-success")
