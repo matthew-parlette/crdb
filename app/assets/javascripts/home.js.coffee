@@ -47,22 +47,28 @@ The important attributes are 'data-action="filter"' and 'data-filters="#table-se
 ) jQuery
 
 ready = ->
+  $.ajax
+    url: "/home/today",
+    type: "POST",
+    dataType: "json",
+    success: (data) ->
+      console.log data
+      window.today = data
+      update_user_instructions()
+      update_notifications()
+
   # attach table filter plugin to inputs
   $("[data-action=\"filter\"]").filterTable()
   $("#projects-table-filter").focus()
 
   $("[data-toggle=\"tooltip\"]").tooltip()
-  update_user_instructions()
+  
   return
 
 $(document).ready(ready)
 $(document).on('page:load', ready)
 
 $(document).on "click", ".projects-table-row", ->
-  #alert $(this).attr("id")
-  id_parts = $(this).attr("id").split "-"
-  project_id = id_parts[1]
-  console.log "adding " + project_id
   if $(this).hasClass("selected")
     # removing this row from the selection
     $(this).removeClass("selected")
@@ -81,9 +87,11 @@ $(document).on "click", ".projects-table-row", ->
       #alert "selected projects: " + data
       window.today = data
       update_user_instructions()
+      update_notifications()
   return
 
 update_user_instructions = ->
+  console.log "update_user_instructions: today is " + today
   #user-instructions-select-projects
   if today.projects.length > 0
     $("#user-instructions-select-projects").find("span").removeClass("glyphicon-remove-sign").addClass("glyphicon-ok-sign")
@@ -91,4 +99,13 @@ update_user_instructions = ->
   else
     $("#user-instructions-select-projects").find("span").removeClass("glyphicon-ok-sign").addClass("glyphicon-remove-sign")
     $("#user-instructions-select-projects").find("span").removeClass("text-success").addClass("text-danger")
+  return
+
+update_notifications = ->
+  console.log "update_notifications: planning notification is " + today.notifications.planning
+  # planning-notification
+  if today.notifications.planning is null
+    $("#planning-notification").removeClass("glyphicon-exclamation-sign").removeClass("text-danger")
+  if today.notifications.planning == "error"
+    $("#planning-notification").addClass("glyphicon-exclamation-sign").addClass("text-danger")
   return

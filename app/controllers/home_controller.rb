@@ -4,6 +4,7 @@ class HomeController < ApplicationController
   before_filter :print_params
   before_filter :load_today
   after_filter :format_flash
+  #after_filter :update_notifications
   after_filter :print_today_hash
   
   def index
@@ -11,8 +12,16 @@ class HomeController < ApplicationController
   end
 
   def today
-    today_add_project(params[:today][:projects][:id]) if params[:today][:projects][:action] == "add"
-    today_remove_project(params[:today][:projects][:id]) if params[:today][:projects][:action] == "remove"
+    if params.has_key?("today")
+      if params[:today].has_key?("projects")
+        if params[:today][:projects].has_key?("action") and params[:today][:projects].has_key?("id")
+          today_add_project(params[:today][:projects][:id]) if params[:today][:projects][:action] == "add"
+          today_remove_project(params[:today][:projects][:id]) if params[:today][:projects][:action] == "remove"
+        end
+      end
+    end
+
+    update_notifications
 
     respond_to do |format|
       format.json { render json: session[:today] }
@@ -30,11 +39,25 @@ class HomeController < ApplicationController
     end
 
     def load_today
+      #uncomment the next line to reset today's session for testing
+      #session[:today] = nil
       date_today = Time.zone.today.iso8601
       
       # Create session variables if they don't already exist, or is too old
       if !session[:today] or !session.key?(:today) or session[:today][:date] != date_today
-        session[:today] = {:date => date_today, :projects => Set.new()}
+        session[:today] = {
+                           :date => date_today,
+                           :projects => Set.new(),
+                           :notifications => Hash.new(),
+                          }
+      end
+    end
+
+    def update_notifications
+      if session[:today][:projects].count > 0
+        session[:today][:notifications][:planning] = nil
+      else
+        session[:today][:notifications][:planning] = "error"
       end
     end
 

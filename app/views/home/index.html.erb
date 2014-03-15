@@ -1,6 +1,3 @@
-<%= javascript_tag do %>
-  window.today = <%= session[:today].to_json %>;
-<% end %>
 <div class="container">
   <div class="row">
     <div class="col-md-2">
@@ -15,7 +12,7 @@
           <div id="sidebar-today" class="panel-collapse collapse in">
             <ul class="list-group">
               <a href="#today-planning" class="list-group-item" data-toggle="tab">
-                <span class="glyphicon glyphicon-exclamation-sign pull-right text-danger"></span>
+                <span class="glyphicon pull-right" id="planning-notification"></span>
                 <span class="glyphicon glyphicon-pencil"></span> Planning
               </a>
               <a href="#today-working" class="list-group-item" data-toggle="tab">
