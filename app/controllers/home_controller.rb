@@ -49,13 +49,19 @@ class HomeController < ApplicationController
                            :date => date_today,
                            :projects => Set.new(),
                            :notifications => Hash.new(),
+                           :badges => Hash.new(),
                           }
       end
     end
 
     def update_notifications
+    # all notifications off unless something enables them
+    session[:today][:notifications][:planning] = nil
+    session[:today][:notifications][:working] = nil
+
       if session[:today][:projects].count > 0
         session[:today][:notifications][:planning] = nil
+        session[:today][:badges][:working] = session[:today][:projects].count
       else
         session[:today][:notifications][:planning] = "error"
       end

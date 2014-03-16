@@ -108,4 +108,15 @@ update_notifications = ->
     $("#planning-notification").removeClass("glyphicon-exclamation-sign").removeClass("text-danger")
   if today.notifications.planning == "error"
     $("#planning-notification").addClass("glyphicon-exclamation-sign").addClass("text-danger")
+
+  # working-notification
+  if today.notifications.working is null
+    $("#working-notification").removeClass("glyphicon-exclamation-sign").removeClass("text-danger")
+    # working-badge (only when working notification is nothing)
+    if today.badges.working
+      $("#working-badge").html(today.badges.working)
+  if today.notifications.working == "error"
+    $("#working-notification").addClass("glyphicon-exclamation-sign").addClass("text-danger")
+
+
   return
