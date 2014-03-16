@@ -22,11 +22,19 @@
 }
 
 .projects-table .selected td{
-	background-color: #ffff99;
+	background-color: #ff9;
 }
 
 .projects-table tbody tr:hover td, .projects-table tbody tr:hover th {
-  background-color: #ffff99;
+  background-color: #ff9;
+}
+
+.projects-table-row-active td {
+  background-color: #fef;
+}
+
+.projects-table-row-inactive td {
+  background-color: #ffc;
 }
 
 #sidebar .glyphicon { margin-right:10px; }

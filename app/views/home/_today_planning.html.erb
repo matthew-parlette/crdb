@@ -29,22 +29,25 @@
           <thead>
             <tr>
               <th style="width: 20%;">Project</th>
+              <th style="width: 20%;">Status</th>
               <th style="width: 20%;">Workflow</th>
               <th style="width: 20%;">Priority</th>
-              <th style="width: 40%;">Company</th>
+              <th style="width: 20%;">Company</th>
             </tr>
           </thead>
           <tbody>
             <% @projects.keys.each do |category| %>
+              <% @projects[category] = @projects[category].sort_by{|p1,p2| dynamic_priority(p2)[:priority] <=> dynamic_priority(p1)[:priority]} %>
               <% @projects[category].each do |p| %>
                 <% if p.customer_id %><% customer = Customer.find(p.customer_id) %><% end %>
                 <% selected = if session[:today][:projects].include?("#{p.id}") then "selected" else "" end %>
                 <% action = if selected == "selected" then "remove" else "add" end %>
                 <% priority = dynamic_priority(p) %>
-                <%= content_tag "tr", class: "projects-table-row #{selected}",
+                <%= content_tag "tr", class: "projects-table-row #{selected} projects-table-row-#{category}",
                                       id: "project-#{p.id}",
                                       data: { url: home_today_path(), action: action, id: p.id } do %>
                   <td><%= p.title %></td>
+                  <td><%= category %></td>
                   <td><%= render partial: 'projects/workflow', locals: {project: p} %></td>
                   <td>
                     <abbr title="<%= priority[:description].join("\n") %>"><%= priority[:priority] %></abbr>

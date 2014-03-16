@@ -73,7 +73,8 @@ module ApplicationHelper
   def dynamic_priority(object)
     # initialize the return value
     result = { priority: 0, description: [] }
-    
+    return result if object == nil
+
     # project priority
     if object.status
       if object.status != "accepted"
