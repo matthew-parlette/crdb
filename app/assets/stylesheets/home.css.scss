@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.glyphicon-large{
+  margin-top: -.1em;
+  font-size: 2em;
+}
+
 #projects-table-filter{
   margin-top: -2em;
   font-size: .75em;
@@ -16,8 +21,20 @@
   display: none;
 }
 
-.projects-table-row .selected-row td{
-	background-color: #ffff99;
+.projects-table .selected td{
+	background-color: #ff9;
+}
+
+.projects-table tbody tr:hover td, .projects-table tbody tr:hover th {
+  background-color: #ff9;
+}
+
+.projects-table-row-active td {
+  background-color: #fef;
+}
+
+.projects-table-row-inactive td {
+  background-color: #ffc;
 }
 
 #sidebar .glyphicon { margin-right:10px; }

@@ -47,21 +47,76 @@ The important attributes are 'data-action="filter"' and 'data-filters="#table-se
 ) jQuery
 
 ready = ->
+  $.ajax
+    url: "/home/today",
+    type: "POST",
+    dataType: "json",
+    success: (data) ->
+      console.log data
+      window.today = data
+      update_user_instructions()
+      update_notifications()
+
   # attach table filter plugin to inputs
   $("[data-action=\"filter\"]").filterTable()
   $("#projects-table-filter").focus()
 
   $("[data-toggle=\"tooltip\"]").tooltip()
+  
   return
 
 $(document).ready(ready)
 $(document).on('page:load', ready)
 
 $(document).on "click", ".projects-table-row", ->
-  #alert $(this).attr("id")
-  id_parts = $(this).attr("id").split "-"
-  project_id = id_parts[1]
-  console.log "adding " + project_id
-  $(this).find("td").css("background-color","#ffff99")
-  #root.selected.push {"id": project_id}
+  if $(this).hasClass("selected")
+    # removing this row from the selection
+    $(this).removeClass("selected")
+    $(this).attr("data-action","remove")
+  else
+    # highlighting a previously de-selected row
+    $(this).addClass("selected")
+    $(this).attr("data-action","add")
+  # update today's list with the changes
+  $.ajax
+    url: $(this).attr("data-url"),
+    type: 'POST',
+    dataType: 'json',
+    data: { today: { projects: { action: $(this).attr("data-action"), id: $(this).attr("data-id") } } }
+    success: (data) ->
+      #alert "selected projects: " + data
+      window.today = data
+      update_user_instructions()
+      update_notifications()
+  return
+
+update_user_instructions = ->
+  console.log "update_user_instructions: today is " + today
+  #user-instructions-select-projects
+  if today.projects.length > 0
+    $("#user-instructions-select-projects").find("span").removeClass("glyphicon-remove-sign").addClass("glyphicon-ok-sign")
+    $("#user-instructions-select-projects").find("span").removeClass("text-danger").addClass("text-success")
+  else
+    $("#user-instructions-select-projects").find("span").removeClass("glyphicon-ok-sign").addClass("glyphicon-remove-sign")
+    $("#user-instructions-select-projects").find("span").removeClass("text-success").addClass("text-danger")
+  return
+
+update_notifications = ->
+  console.log "update_notifications: planning notification is " + today.notifications.planning
+  # planning-notification
+  if today.notifications.planning is null
+    $("#planning-notification").removeClass("glyphicon-exclamation-sign").removeClass("text-danger")
+  if today.notifications.planning == "error"
+    $("#planning-notification").addClass("glyphicon-exclamation-sign").addClass("text-danger")
+
+  # working-notification
+  if today.notifications.working is null
+    $("#working-notification").removeClass("glyphicon-exclamation-sign").removeClass("text-danger")
+    # working-badge (only when working notification is nothing)
+    if today.badges.working
+      $("#working-badge").html(today.badges.working)
+  if today.notifications.working == "error"
+    $("#working-notification").addClass("glyphicon-exclamation-sign").addClass("text-danger")
+
+
   return

@@ -12,16 +12,18 @@
           <div id="sidebar-today" class="panel-collapse collapse in">
             <ul class="list-group">
               <a href="#today-planning" class="list-group-item" data-toggle="tab">
-                <span class="glyphicon glyphicon-exclamation-sign pull-right text-danger"></span>
+                <span class="glyphicon pull-right" id="planning-notification"></span>
                 <span class="glyphicon glyphicon-pencil"></span> Planning
               </a>
-              <a href="#today-working" class="list-group-item">
+              <a href="#today-working" class="list-group-item" data-toggle="tab">
+                <span class="glyphicon pull-right" id="working-notification"></span>
+                <span class="badge pull-right" id="working-badge"></span>
                 <span class="glyphicon glyphicon-briefcase"></span> Working
               </a>
-              <a href="#today-tracking" class="list-group-item">
+              <a href="#today-tracking" class="list-group-item" data-toggle="tab">
                 <span class="glyphicon glyphicon-book"></span> Tracking
               </a>
-              <a href="#today-reporting" class="list-group-item">
+              <a href="#today-reporting" class="list-group-item" data-toggle="tab">
                 <span class="glyphicon glyphicon-stats"></span> Reporting
               </a>
             </ul>
@@ -36,10 +38,10 @@
           </div>
           <div id="sidebar-follow-up" class="panel-collapse collapse in">
             <ul class="list-group">
-              <a href="#follow-up-completed" class="list-group-item">
+              <a href="#follow-up-completed" class="list-group-item" data-toggle="tab">
                 <span class="glyphicon glyphicon-ok"></span> Completed
               </a>
-              <a href="#follow-up-waiting" class="list-group-item">
+              <a href="#follow-up-waiting" class="list-group-item" data-toggle="tab">
                 <span class="glyphicon glyphicon-time"></span> Waiting
               </a>
             </ul>
@@ -54,7 +56,7 @@
           </div>
           <div id="sidebar-reporting" class="panel-collapse collapse">
             <ul class="list-group">
-              <a href="#reporting-todo" class="list-group-item">
+              <a href="#reporting-todo" class="list-group-item" data-toggle="tab">
                 <span class="glyphicon glyphicon-pencil"></span> To-Do
               </a>
             </ul>
