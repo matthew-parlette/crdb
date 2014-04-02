@@ -52,6 +52,14 @@ class HomeController < ApplicationController
                            :badges => Hash.new(),
                           }
       end
+
+      # Set some variables based on the today hash
+      @working_projects = Set.new()
+      session[:today][:projects].each do |id|
+        @working_projects.add(Project.find(id))
+      end
+      puts "@working_projects set is: " + @working_projects.first.to_s
+
     end
 
     def update_notifications

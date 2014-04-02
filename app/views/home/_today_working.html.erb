@@ -1,5 +1,11 @@
 <div class="container-fluid">
     <div class="row-fluid">
-        
+        <!-- <div class="col-md-1"></div> -->
+        <div class="col-md-12">
+            <% @working_projects.each do |project| %>
+                <%= render partial: 'projects/panel', locals: { project: project } %>
+            <% end %>
+        </div>
+        <!-- <div class="col-md-1"></div> -->
     </div>
 </div>
