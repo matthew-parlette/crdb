@@ -13,7 +13,21 @@
       <div class="col-md-4">
         <%= render partial: 'projects/workflow', locals: {project: project} %>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-2">
+        <div class="btn-group">
+          <button type="button" class="btn btn-xs btn-default" onclick="$.pomodoro(); return false">25m</button>
+          <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown">
+            <span class="caret"></span>
+            <span class="sr-only">Timer Options</span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">25m</a></li>
+            <li><a href="#">10m</a></li>
+            <li><a href="#">5m</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Break</a></li>
+          </ul>
+        </div>
       </div>
       <%if collapsable %>
         <div class="pull-right clickable" data-toggle="collapse" data-target="#project-<%= project.id %>-body">
